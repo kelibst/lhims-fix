@@ -1,0 +1,35 @@
+{
+  "name": "lhims-data-extraction",
+  "version": "1.0.0",
+  "description": "LHIMS data extraction and contingency system for Volta Regional Hospital Hohoe",
+  "main": "index.js",
+  "scripts": {
+    "capture": "node scripts/playwright-network-capture.js",
+    "capture:old": "node scripts/playwright-har-capture.js",
+    "analyze": "node scripts/analyze-capture.js",
+    "analyze:har": "node scripts/analyze-requests.js",
+    "extract:opd": "node scripts/extract-opd-data.js",
+    "extract:ipd": "node scripts/extract-ipd-data.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "lhims",
+    "health",
+    "data-extraction",
+    "hospital"
+  ],
+  "author": "VRH Hohoe",
+  "license": "PRIVATE",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "local"
+  },
+  "private": true
+}

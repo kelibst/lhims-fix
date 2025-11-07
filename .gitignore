@@ -1,0 +1,64 @@
+# LHIMS Data Extraction - Sensitive Files
+
+# Node modules
+node_modules/
+package-lock.json
+
+# Captured network traffic (contains session cookies and sensitive data)
+data/captures/*.har
+data/captures/*.json
+
+# Downloaded Excel files (patient data)
+data/opd-register/*.xls
+data/opd-register/*.xlsx
+data/opd-morbidity/*.xls
+data/opd-morbidity/*.xlsx
+data/ipd-morbidity-mortality/*.xls
+data/ipd-morbidity-mortality/*.xlsx
+data/laboratory/*.xls
+data/laboratory/*.xlsx
+data/pharmacy/*.xls
+data/pharmacy/*.xlsx
+
+# Database files (patient data)
+data/database/*.db
+data/database/*.sqlite
+data/database/*.sqlite3
+
+# Analysis files (may contain sensitive endpoints)
+analysis/*.json
+
+# Credentials and environment files
+.env
+.env.local
+credentials.json
+config.json
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+# Local scripts with actual credentials (DO NOT COMMIT)
+scripts/extract-opd-data.js
+scripts/extract-ipd-data.js

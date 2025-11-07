@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npx playwright install:*)",
+      "Bash(timeout /t 30:*)",
+      "Bash(node scripts/test-setup.js:*)",
+      "Bash(dir /b *.md)",
+      "Bash(node scripts/analyze-capture.js:*)",
+      "Bash(.gitignore)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
