@@ -6,10 +6,14 @@
   "scripts": {
     "capture": "node scripts/playwright-network-capture.js",
     "capture:old": "node scripts/playwright-har-capture.js",
+    "capture:pdf": "node scripts/capture-patient-pdf.js",
     "analyze": "node scripts/analyze-capture.js",
     "analyze:har": "node scripts/analyze-requests.js",
     "extract:opd": "node scripts/extract-opd-data.js",
     "extract:ipd": "node scripts/extract-ipd-data.js",
+    "extract:anc": "node scripts/extract-anc-data.js",
+    "extract:consulting": "node scripts/extract-consulting-room-data.js",
+    "extract:lab": "node scripts/extract-medical-lab-data.js",
     "test": "echo \"No tests yet\" && exit 0"
   },
   "keywords": [

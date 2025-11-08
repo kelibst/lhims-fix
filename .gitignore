@@ -7,6 +7,11 @@ package-lock.json
 # Captured network traffic (contains session cookies and sensitive data)
 data/captures/*.har
 data/captures/*.json
+network-captures/*.har
+network-captures/*.json
+network-captures/*.pdf
+network-captures/*.xls
+network-captures/*.xlsx
 
 # Downloaded Excel files (patient data)
 data/opd-register/*.xls
@@ -15,6 +20,12 @@ data/opd-morbidity/*.xls
 data/opd-morbidity/*.xlsx
 data/ipd-morbidity-mortality/*.xls
 data/ipd-morbidity-mortality/*.xlsx
+data/anc-register/*.xls
+data/anc-register/*.xlsx
+data/consulting-room/*.xls
+data/consulting-room/*.xlsx
+data/medical-laboratory/*.xls
+data/medical-laboratory/*.xlsx
 data/laboratory/*.xls
 data/laboratory/*.xlsx
 data/pharmacy/*.xls
@@ -62,3 +73,8 @@ temp/
 # Local scripts with actual credentials (DO NOT COMMIT)
 scripts/extract-opd-data.js
 scripts/extract-ipd-data.js
+scripts/extract-anc-data.js
+scripts/extract-consulting-room-data.js
+scripts/extract-medical-lab-data.js
+
+.claude/
