@@ -14,7 +14,9 @@
     "extract:anc": "node scripts/extract-anc-data.js",
     "extract:consulting": "node scripts/extract-consulting-room-data.js",
     "extract:lab": "node scripts/extract-medical-lab-data.js",
+    "generate:patients": "node scripts/generate-patient-list.js",
     "extract:patients": "node scripts/extract-patient-json.js",
+    "extract:patients:test": "node scripts/extract-patient-json.js test-patient-list.txt",
     "test": "echo \"No tests yet\" && exit 0"
   },
   "keywords": [
@@ -26,9 +28,9 @@
   "author": "VRH Hohoe",
   "license": "PRIVATE",
   "dependencies": {
-    "playwright": "^1.40.0"
+    "playwright": "^1.40.0",
+    "xlsx": "^0.18.5"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=16.0.0"
   },
