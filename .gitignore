@@ -70,11 +70,19 @@ desktop.ini
 tmp/
 temp/
 *.tmp
+# Patient JSON data (contains patient information)
+data/patient-json/
+data/patient-pdfs/
+
+# Patient list (may contain patient identifiers)
+patient-list.txt
+
 # Local scripts with actual credentials (DO NOT COMMIT)
 scripts/extract-opd-data.js
 scripts/extract-ipd-data.js
 scripts/extract-anc-data.js
 scripts/extract-consulting-room-data.js
 scripts/extract-medical-lab-data.js
+scripts/extract-patient-json.js
 
 .claude/

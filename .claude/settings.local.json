@@ -9,7 +9,19 @@
       "Bash(node scripts/analyze-capture.js:*)",
       "Bash(.gitignore)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: LHIMS data extraction system for VRH Hohoe\n\nSet up automated data extraction system to retrieve patient data\nfrom LHIMS before facility lockout.\n\nFeatures:\n- Network traffic capture and analysis tools\n- Automated OPD and IPD data extraction scripts\n- Comprehensive documentation and guides\n- Security: credentials and patient data excluded from repository\n\nComponents:\n- Playwright-based network capture scripts\n- HAR file analysis tools\n- OPD register extraction (template)\n- IPD morbidity & mortality extraction (template)\n- Complete setup and usage documentation\n\nSecurity:\n- All credentials removed from committed scripts\n- Patient data directories excluded via .gitignore\n- Network captures excluded\n- Analysis files excluded\n\n🤖 Generated with Claude Code (https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)",
+      "Bash(node -e:*)",
+      "Bash(for file in extract-ipd-data.js extract-anc-data.js extract-consulting-room-data.js extract-medical-lab-data.js)",
+      "Bash(do echo \"Updating $file...\")",
+      "Bash(done)",
+      "Bash(python:*)",
+      "Bash(iconv:*)",
+      "Bash(cat:*)",
+      "Bash(dir:*)",
+      "Bash(nul)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []

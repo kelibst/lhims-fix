@@ -14,6 +14,7 @@
     "extract:anc": "node scripts/extract-anc-data.js",
     "extract:consulting": "node scripts/extract-consulting-room-data.js",
     "extract:lab": "node scripts/extract-medical-lab-data.js",
+    "extract:patients": "node scripts/extract-patient-json.js",
     "test": "echo \"No tests yet\" && exit 0"
   },
   "keywords": [
