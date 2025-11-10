@@ -2,15 +2,29 @@
 
 ## IMPORTANT INSTRUCTIONS FOR AI ASSISTANTS
 
+### Memory Management Protocol
+
 **BEFORE starting any new task**:
-1. **READ** `plan/ACTIVITIES.md` to understand what has been done previously
-2. **REVIEW** the session history and completed work to avoid duplication
-3. **CHECK** for any pending issues or follow-up tasks
+1. **READ** `PROJECT-CONTEXT.md` - Get current project status, key facts, and technical decisions
+2. **CHECK** for active blockers and pending issues
+3. **REVIEW** architecture patterns and gotchas to avoid common mistakes
 
 **AFTER completing any major task**:
-1. **UPDATE** `plan/ACTIVITIES.md` with:
-   - what the current changes might mean for the project.
-  
+1. **UPDATE** `PROJECT-CONTEXT.md` with any changed facts:
+   - New patient counts or statistics
+   - Changed regex patterns or API endpoints
+   - New gotchas or limitations discovered
+   - Updated project status or blockers
+   - **NOTE**: Update current facts only, do not add historical changelog
+
+2. **ASK ABOUT COMMIT**: After major changes, always ask:
+   - "Should I commit these changes?"
+   - Wait for user approval before committing
+   - Never commit secrets (.env, credentials, API keys, passwords)
+
+3. **DOCUMENT** (if generating new documentation):
+   - Put AI-generated docs in `plan/documentation/`
+   - Keep user-facing guides in root (README.md, USAGE.md)
 
 ---
 
