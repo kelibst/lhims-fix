@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LHIMS Patient Viewer with PDF</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .search-section {
+      padding: 30px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 12px 20px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .search-box button {
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .search-box button:hover {
+      transform: translateY(-2px);
+    }
+
+    .search-box button:active {
+      transform: translateY(0);
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .patient-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .patient-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .patient-header h2 {
+      color: #2c3e50;
+      font-size: 24px;
+    }
+
+    .patient-id {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .pdf-section {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pdf-info {
+      color: white;
+    }
+
+    .pdf-info h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .pdf-info p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .pdf-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: white;
+      color: #f5576c;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .pdf-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .pdf-button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .pdf-unavailable {
+      background: #95a5a6;
+    }
+
+    .pdf-unavailable .pdf-button {
+      background: #bdc3c7;
+      color: #7f8c8d;
+      cursor: not-allowed;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-card h4 {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-card p {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .data-section {
+      margin-top: 20px;
+    }
+
+    .data-section h3 {
+      color: #2c3e50;
+      font-size: 18px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .data-table th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .data-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #95a5a6;
+    }
+
+    .empty-state svg {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .empty-state h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .empty-state p {
+      font-size: 16px;
+    }
+
+    .error-message {
+      background: #e74c3c;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #95a5a6;
+    }
+
+    .loading::after {
+      content: '...';
+      animation: dots 1.5s steps(4, end) infinite;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60%, 100% { content: '...'; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🏥 LHIMS Patient Viewer</h1>
+      <p>Volta Regional Hospital Hohoe - Patient Records with PDF Access</p>
+    </header>
+
+    <div class="search-section">
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Enter patient number (e.g., VR-A01-AAA0001)"
+          onkeypress="if(event.key === 'Enter') searchPatient()"
+        >
+        <button onclick="searchPatient()">Search</button>
+      </div>
+    </div>
+
+    <div class="content" id="content">
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="8.5" cy="7" r="4"></circle>
+          <line x1="20" y1="8" x2="20" y2="14"></line>
+          <line x1="23" y1="11" x2="17" y2="11"></line>
+        </svg>
+        <h3>Search for a Patient</h3>
+        <p>Enter a patient number to view their complete record</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configuration
+    const BASE_PATH = './data/patient-json';
+    const PDF_BASE_PATH = './data/patient-pdfs';
+
+    async function searchPatient() {
+      const patientNo = document.getElementById('searchInput').value.trim().toUpperCase();
+      const content = document.getElementById('content');
+
+      if (!patientNo) {
+        showError('Please enter a patient number');
+        return;
+      }
+
+      // Show loading
+      content.innerHTML = '<div class="loading">Searching for patient</div>';
+
+      try {
+        // Load patient metadata
+        const metadataPath = `${BASE_PATH}/${patientNo}/_metadata.json`;
+        const response = await fetch(metadataPath);
+
+        if (!response.ok) {
+          throw new Error('Patient not found');
+        }
+
+        const metadata = await response.json();
+        displayPatient(patientNo, metadata);
+
+      } catch (error) {
+        showError(`Patient "${patientNo}" not found. Please check the patient number and try again.`);
+      }
+    }
+
+    function displayPatient(patientNo, metadata) {
+      const content = document.getElementById('content');
+
+      // Build PDF section
+      const pdfSection = metadata.pdf_available ? `
+        <div class="pdf-section">
+          <div class="pdf-info">
+            <h3>📄 Complete Patient Record (PDF)</h3>
+            <p>File size: ${metadata.pdf_size_readable || 'Unknown'}</p>
+          </div>
+          <a href="${PDF_BASE_PATH}/${patientNo}.pdf" target="_blank" class="pdf-button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="12" y1="18" x2="12" y2="12"></line>
+              <line x1="9" y1="15" x2="15" y2="15"></line>
+            </svg>
+            Open PDF Record
+          </a>
+        </div>
+      ` : `
+        <div class="pdf-section pdf-unavailable">
+          <div class="pdf-info">
+            <h3>📄 PDF Not Available</h3>
+            <p>Run extract-patient-pdf.js to generate PDF</p>
+          </div>
+          <span class="pdf-button">PDF Not Generated</span>
+        </div>
+      `;
+
+      // Build stats grid
+      const statsGrid = `
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h4>Admissions</h4>
+            <p>${metadata.counts?.admissions || 0}</p>
+          </div>
+          <div class="stat-card">
+            <h4>Consultations</h4>
+            <p>${metadata.counts?.consultations || 0}</p>
+          </div>
+          <div class="stat-card">
+            <h4>Prescriptions</h4>
+            <p>${metadata.counts?.prescriptions || 0}</p>
+          </div>
+          <div class="stat-card">
+            <h4>Lab Results</h4>
+            <p>${metadata.counts?.lab_results || 0}</p>
+          </div>
+        </div>
+      `;
+
+      // Build data table
+      const dataTable = `
+        <div class="data-section">
+          <h3>Patient Information</h3>
+          <table class="data-table">
+            <tr>
+              <th>Patient Number</th>
+              <td>${metadata.patient_no}</td>
+            </tr>
+            <tr>
+              <th>Internal Patient ID</th>
+              <td>${metadata.patient_id}</td>
+            </tr>
+            <tr>
+              <th>Data Extracted</th>
+              <td>${new Date(metadata.extracted_at).toLocaleString()}</td>
+            </tr>
+            <tr>
+              <th>Demographics Available</th>
+              <td>${metadata.has_demographics ? '✓ Yes' : '✗ No'}</td>
+            </tr>
+            <tr>
+              <th>VBC Data Available</th>
+              <td>${metadata.has_vbc_data ? '✓ Yes' : '✗ No'}</td>
+            </tr>
+            <tr>
+              <th>PDF Record Available</th>
+              <td>${metadata.pdf_available ? '✓ Yes' : '✗ No'}</td>
+            </tr>
+          </table>
+        </div>
+      `;
+
+      // Display everything
+      content.innerHTML = `
+        <div class="patient-card">
+          <div class="patient-header">
+            <h2>Patient Record</h2>
+            <span class="patient-id">${patientNo}</span>
+          </div>
+
+          ${pdfSection}
+          ${statsGrid}
+          ${dataTable}
+        </div>
+      `;
+    }
+
+    function showError(message) {
+      const content = document.getElementById('content');
+      content.innerHTML = `
+        <div class="error-message">
+          ⚠️ ${message}
+        </div>
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <h3>Patient Not Found</h3>
+          <p>Try searching for a different patient number</p>
+        </div>
+      `;
+    }
+
+    // Focus search input on load
+    window.addEventListener('load', () => {
+      document.getElementById('searchInput').focus();
+    });
+  </script>
+</body>
+</html>

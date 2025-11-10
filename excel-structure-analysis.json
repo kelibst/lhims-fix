@@ -1,0 +1,1834 @@
+{
+  "OPD Register": {
+    "file": "OPD_Register_2024_Oct.xlsx",
+    "rows": 9899,
+    "columns": 26,
+    "headers": [
+      "LHIMS Out Patient Register From 01-10-2024 To 31-10-2024, Clinic Volta Regional Hospital",
+      "Column_2",
+      "Column_3",
+      "Column_4",
+      "Column_5",
+      "Column_6",
+      "Column_7",
+      "Column_8",
+      "Column_9",
+      "Column_10",
+      "Column_11",
+      "Column_12",
+      "Column_13",
+      "Column_14",
+      "Column_15",
+      "Column_16",
+      "Column_17",
+      "Column_18",
+      "Column_19",
+      "Column_20",
+      "Column_21",
+      "Column_22",
+      "Column_23",
+      "Column_24",
+      "Column_25",
+      "Column_26"
+    ],
+    "column_info": [
+      {
+        "index": 1,
+        "column": "LHIMS Out Patient Register From 01-10-2024 To 31-10-2024, Clinic Volta Regional Hospital",
+        "sample": "None"
+      },
+      {
+        "index": 2,
+        "column": "Column_2",
+        "sample": "None"
+      },
+      {
+        "index": 3,
+        "column": "Column_3",
+        "sample": "None"
+      },
+      {
+        "index": 4,
+        "column": "Column_4",
+        "sample": "None"
+      },
+      {
+        "index": 5,
+        "column": "Column_5",
+        "sample": "None"
+      },
+      {
+        "index": 6,
+        "column": "Column_6",
+        "sample": "None"
+      },
+      {
+        "index": 7,
+        "column": "Column_7",
+        "sample": "None"
+      },
+      {
+        "index": 8,
+        "column": "Column_8",
+        "sample": "None"
+      },
+      {
+        "index": 9,
+        "column": "Column_9",
+        "sample": "None"
+      },
+      {
+        "index": 10,
+        "column": "Column_10",
+        "sample": "None"
+      },
+      {
+        "index": 11,
+        "column": "Column_11",
+        "sample": "None"
+      },
+      {
+        "index": 12,
+        "column": "Column_12",
+        "sample": "None"
+      },
+      {
+        "index": 13,
+        "column": "Column_13",
+        "sample": "None"
+      },
+      {
+        "index": 14,
+        "column": "Column_14",
+        "sample": "None"
+      },
+      {
+        "index": 15,
+        "column": "Column_15",
+        "sample": "None"
+      },
+      {
+        "index": 16,
+        "column": "Column_16",
+        "sample": "None"
+      },
+      {
+        "index": 17,
+        "column": "Column_17",
+        "sample": "None"
+      },
+      {
+        "index": 18,
+        "column": "Column_18",
+        "sample": "None"
+      },
+      {
+        "index": 19,
+        "column": "Column_19",
+        "sample": "None"
+      },
+      {
+        "index": 20,
+        "column": "Column_20",
+        "sample": "None"
+      },
+      {
+        "index": 21,
+        "column": "Column_21",
+        "sample": "None"
+      },
+      {
+        "index": 22,
+        "column": "Column_22",
+        "sample": "None"
+      },
+      {
+        "index": 23,
+        "column": "Column_23",
+        "sample": "None"
+      },
+      {
+        "index": 24,
+        "column": "Column_24",
+        "sample": "None"
+      },
+      {
+        "index": 25,
+        "column": "Column_25",
+        "sample": "None"
+      },
+      {
+        "index": 26,
+        "column": "Column_26",
+        "sample": "None"
+      }
+    ],
+    "sample_rows": [
+      {
+        "LHIMS Out Patient Register From 01-10-2024 To 31-10-2024, Clinic Volta Regional Hospital": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS Out Patient Register From 01-10-2024 To 31-10-2024, Clinic Volta Regional Hospital": "Clinic : Volta Regional Hospital",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS Out Patient Register From 01-10-2024 To 31-10-2024, Clinic Volta Regional Hospital": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS Out Patient Register From 01-10-2024 To 31-10-2024, Clinic Volta Regional Hospital": "Report Generation Date: 01-10-2024 to 31-10-2024",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS Out Patient Register From 01-10-2024 To 31-10-2024, Clinic Volta Regional Hospital": "Sr.No.",
+        "Column_2": "Schedule Date",
+        "Column_3": "Patient Name",
+        "Column_4": "Patient No.",
+        "Column_5": "Patient Status",
+        "Column_6": "Age",
+        "Column_7": "Gender",
+        "Column_8": "Locality",
+        "Column_9": "NHIS Status",
+        "Column_10": "Referral Diagnosis",
+        "Column_11": "Patient Clinic Status",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      }
+    ]
+  },
+  "IPD Morbidity & Mortality": {
+    "file": "IPD_Morbidity_Mortality_2024_Oct.xlsx",
+    "rows": 675,
+    "columns": 26,
+    "headers": [
+      "LHIMS In Patient Morbidity And Mortality Register From 01-10-2024 To 31-10-2024",
+      "Column_2",
+      "Column_3",
+      "Column_4",
+      "Column_5",
+      "Column_6",
+      "Column_7",
+      "Column_8",
+      "Column_9",
+      "Column_10",
+      "Column_11",
+      "Column_12",
+      "Column_13",
+      "Column_14",
+      "Column_15",
+      "Column_16",
+      "Column_17",
+      "Column_18",
+      "Column_19",
+      "Column_20",
+      "Column_21",
+      "Column_22",
+      "Column_23",
+      "Column_24",
+      "Column_25",
+      "Column_26"
+    ],
+    "column_info": [
+      {
+        "index": 1,
+        "column": "LHIMS In Patient Morbidity And Mortality Register From 01-10-2024 To 31-10-2024",
+        "sample": "None"
+      },
+      {
+        "index": 2,
+        "column": "Column_2",
+        "sample": "None"
+      },
+      {
+        "index": 3,
+        "column": "Column_3",
+        "sample": "None"
+      },
+      {
+        "index": 4,
+        "column": "Column_4",
+        "sample": "None"
+      },
+      {
+        "index": 5,
+        "column": "Column_5",
+        "sample": "None"
+      },
+      {
+        "index": 6,
+        "column": "Column_6",
+        "sample": "None"
+      },
+      {
+        "index": 7,
+        "column": "Column_7",
+        "sample": "None"
+      },
+      {
+        "index": 8,
+        "column": "Column_8",
+        "sample": "None"
+      },
+      {
+        "index": 9,
+        "column": "Column_9",
+        "sample": "None"
+      },
+      {
+        "index": 10,
+        "column": "Column_10",
+        "sample": "None"
+      },
+      {
+        "index": 11,
+        "column": "Column_11",
+        "sample": "None"
+      },
+      {
+        "index": 12,
+        "column": "Column_12",
+        "sample": "None"
+      },
+      {
+        "index": 13,
+        "column": "Column_13",
+        "sample": "None"
+      },
+      {
+        "index": 14,
+        "column": "Column_14",
+        "sample": "None"
+      },
+      {
+        "index": 15,
+        "column": "Column_15",
+        "sample": "None"
+      },
+      {
+        "index": 16,
+        "column": "Column_16",
+        "sample": "None"
+      },
+      {
+        "index": 17,
+        "column": "Column_17",
+        "sample": "None"
+      },
+      {
+        "index": 18,
+        "column": "Column_18",
+        "sample": "None"
+      },
+      {
+        "index": 19,
+        "column": "Column_19",
+        "sample": "None"
+      },
+      {
+        "index": 20,
+        "column": "Column_20",
+        "sample": "None"
+      },
+      {
+        "index": 21,
+        "column": "Column_21",
+        "sample": "None"
+      },
+      {
+        "index": 22,
+        "column": "Column_22",
+        "sample": "None"
+      },
+      {
+        "index": 23,
+        "column": "Column_23",
+        "sample": "None"
+      },
+      {
+        "index": 24,
+        "column": "Column_24",
+        "sample": "None"
+      },
+      {
+        "index": 25,
+        "column": "Column_25",
+        "sample": "None"
+      },
+      {
+        "index": 26,
+        "column": "Column_26",
+        "sample": "None"
+      }
+    ],
+    "sample_rows": [
+      {
+        "LHIMS In Patient Morbidity And Mortality Register From 01-10-2024 To 31-10-2024": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS In Patient Morbidity And Mortality Register From 01-10-2024 To 31-10-2024": "Clinic : Volta Regional Hospital",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS In Patient Morbidity And Mortality Register From 01-10-2024 To 31-10-2024": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS In Patient Morbidity And Mortality Register From 01-10-2024 To 31-10-2024": "Report Generation Date: Fri Nov 7 16:03:57 GMT 2025",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS In Patient Morbidity And Mortality Register From 01-10-2024 To 31-10-2024": "Sr.No.",
+        "Column_2": "Patient Name",
+        "Column_3": "Patient No.",
+        "Column_4": "Age",
+        "Column_5": "Gender",
+        "Column_6": "Locality/Address/Residence",
+        "Column_7": "Occupation",
+        "Column_8": "Educational Status",
+        "Column_9": "Date of Admission",
+        "Column_10": "Date of Discharge",
+        "Column_11": "Speciality",
+        "Column_12": "Outcome of Discharge",
+        "Column_13": "Principal Diagnosis",
+        "Column_14": "Additional Diagnosis",
+        "Column_15": "Surgical Procedure",
+        "Column_16": "Cost of Treatment",
+        "Column_17": "NHIS Status",
+        "Column_18": "Provisional Diagnosis",
+        "Column_19": "Main Department",
+        "Column_20": "CC Code",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      }
+    ]
+  },
+  "Consulting Room": {
+    "file": "Consulting_Room_2024_Oct.xlsx",
+    "rows": 11836,
+    "columns": 27,
+    "headers": [
+      "LHIMS Consulting Room Register From 01-10-2024 To 31-10-2024",
+      "Column_2",
+      "Column_3",
+      "Column_4",
+      "Column_5",
+      "Column_6",
+      "Column_7",
+      "Column_8",
+      "Column_9",
+      "Column_10",
+      "Column_11",
+      "Column_12",
+      "Column_13",
+      "Column_14",
+      "Column_15",
+      "Column_16",
+      "Column_17",
+      "Column_18",
+      "Column_19",
+      "Column_20",
+      "Column_21",
+      "Column_22",
+      "Column_23",
+      "Column_24",
+      "Column_25",
+      "Column_26",
+      "Column_27"
+    ],
+    "column_info": [
+      {
+        "index": 1,
+        "column": "LHIMS Consulting Room Register From 01-10-2024 To 31-10-2024",
+        "sample": "None"
+      },
+      {
+        "index": 2,
+        "column": "Column_2",
+        "sample": "None"
+      },
+      {
+        "index": 3,
+        "column": "Column_3",
+        "sample": "None"
+      },
+      {
+        "index": 4,
+        "column": "Column_4",
+        "sample": "None"
+      },
+      {
+        "index": 5,
+        "column": "Column_5",
+        "sample": "None"
+      },
+      {
+        "index": 6,
+        "column": "Column_6",
+        "sample": "None"
+      },
+      {
+        "index": 7,
+        "column": "Column_7",
+        "sample": "None"
+      },
+      {
+        "index": 8,
+        "column": "Column_8",
+        "sample": "None"
+      },
+      {
+        "index": 9,
+        "column": "Column_9",
+        "sample": "None"
+      },
+      {
+        "index": 10,
+        "column": "Column_10",
+        "sample": "None"
+      },
+      {
+        "index": 11,
+        "column": "Column_11",
+        "sample": "None"
+      },
+      {
+        "index": 12,
+        "column": "Column_12",
+        "sample": "None"
+      },
+      {
+        "index": 13,
+        "column": "Column_13",
+        "sample": "None"
+      },
+      {
+        "index": 14,
+        "column": "Column_14",
+        "sample": "None"
+      },
+      {
+        "index": 15,
+        "column": "Column_15",
+        "sample": "None"
+      },
+      {
+        "index": 16,
+        "column": "Column_16",
+        "sample": "None"
+      },
+      {
+        "index": 17,
+        "column": "Column_17",
+        "sample": "None"
+      },
+      {
+        "index": 18,
+        "column": "Column_18",
+        "sample": "None"
+      },
+      {
+        "index": 19,
+        "column": "Column_19",
+        "sample": "None"
+      },
+      {
+        "index": 20,
+        "column": "Column_20",
+        "sample": "None"
+      },
+      {
+        "index": 21,
+        "column": "Column_21",
+        "sample": "None"
+      },
+      {
+        "index": 22,
+        "column": "Column_22",
+        "sample": "None"
+      },
+      {
+        "index": 23,
+        "column": "Column_23",
+        "sample": "None"
+      },
+      {
+        "index": 24,
+        "column": "Column_24",
+        "sample": "None"
+      },
+      {
+        "index": 25,
+        "column": "Column_25",
+        "sample": "None"
+      },
+      {
+        "index": 26,
+        "column": "Column_26",
+        "sample": "None"
+      },
+      {
+        "index": 27,
+        "column": "Column_27",
+        "sample": "None"
+      }
+    ],
+    "sample_rows": [
+      {
+        "LHIMS Consulting Room Register From 01-10-2024 To 31-10-2024": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": "",
+        "Column_27": ""
+      },
+      {
+        "LHIMS Consulting Room Register From 01-10-2024 To 31-10-2024": "Clinic : Volta Regional Hospital",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": "",
+        "Column_27": ""
+      },
+      {
+        "LHIMS Consulting Room Register From 01-10-2024 To 31-10-2024": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": "",
+        "Column_27": ""
+      },
+      {
+        "LHIMS Consulting Room Register From 01-10-2024 To 31-10-2024": "Report Generation Date: 01-10-2024 to 31-10-2024",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": "",
+        "Column_27": ""
+      },
+      {
+        "LHIMS Consulting Room Register From 01-10-2024 To 31-10-2024": "Sr.No.",
+        "Column_2": "Schedule Date",
+        "Column_3": "NHIA No.",
+        "Column_4": "Patient No.",
+        "Column_5": "Patient Name",
+        "Column_6": "Locality",
+        "Column_7": "Contact No.",
+        "Column_8": "Age",
+        "Column_9": "Gender",
+        "Column_10": "Type Of Procedure(s) Requested",
+        "Column_11": "Type Of Test(s) Requested",
+        "Column_12": "Test Result(s)",
+        "Column_13": "Provisional Diagnosis",
+        "Column_14": "Principal Diagnosis (New Case)",
+        "Column_15": "Principal Diagnosis (Old Case)",
+        "Column_16": "Principal Diagnosis (Recurring Case)",
+        "Column_17": "Additional Diagnosis (New Case)",
+        "Column_18": "Additional Diagnosis (Old Case)",
+        "Column_19": "Additional Diagnosis (Recurring Case)",
+        "Column_20": "Pregnant Patient",
+        "Column_21": "NHIA Patient",
+        "Column_22": "Medicines Prescribed",
+        "Column_23": "Medicines Dispensed",
+        "Column_24": "Patient Clinic Status",
+        "Column_25": "Referred",
+        "Column_26": "Is Confirmed (ICD10)",
+        "Column_27": "Is Confirmed (DRG)"
+      }
+    ]
+  },
+  "ANC Register": {
+    "file": "ANC_Register_2024_Oct.xlsx",
+    "rows": 608,
+    "columns": 52,
+    "headers": [
+      "LHIMS ANC Register From 01-10-2024 To 31-10-2024",
+      "Column_2",
+      "Column_3",
+      "Column_4",
+      "Column_5",
+      "Column_6",
+      "Column_7",
+      "Column_8",
+      "Column_9",
+      "Column_10",
+      "Column_11",
+      "Column_12",
+      "Column_13",
+      "Column_14",
+      "Column_15",
+      "Column_16",
+      "Column_17",
+      "Column_18",
+      "Column_19",
+      "Column_20",
+      "Column_21",
+      "Column_22",
+      "Column_23",
+      "Column_24",
+      "Column_25",
+      "Column_26",
+      "Column_27",
+      "Column_28",
+      "Column_29",
+      "Column_30",
+      "Column_31",
+      "Column_32",
+      "Column_33",
+      "Column_34",
+      "Column_35",
+      "Column_36",
+      "Column_37",
+      "Column_38",
+      "Column_39",
+      "Column_40",
+      "Column_41",
+      "Column_42",
+      "Column_43",
+      "Column_44",
+      "Column_45",
+      "Column_46",
+      "Column_47",
+      "Column_48",
+      "Column_49",
+      "Column_50",
+      "Column_51",
+      "Column_52"
+    ],
+    "column_info": [
+      {
+        "index": 1,
+        "column": "LHIMS ANC Register From 01-10-2024 To 31-10-2024",
+        "sample": "None"
+      },
+      {
+        "index": 2,
+        "column": "Column_2",
+        "sample": "None"
+      },
+      {
+        "index": 3,
+        "column": "Column_3",
+        "sample": "None"
+      },
+      {
+        "index": 4,
+        "column": "Column_4",
+        "sample": "None"
+      },
+      {
+        "index": 5,
+        "column": "Column_5",
+        "sample": "None"
+      },
+      {
+        "index": 6,
+        "column": "Column_6",
+        "sample": "None"
+      },
+      {
+        "index": 7,
+        "column": "Column_7",
+        "sample": "None"
+      },
+      {
+        "index": 8,
+        "column": "Column_8",
+        "sample": "None"
+      },
+      {
+        "index": 9,
+        "column": "Column_9",
+        "sample": "None"
+      },
+      {
+        "index": 10,
+        "column": "Column_10",
+        "sample": "None"
+      },
+      {
+        "index": 11,
+        "column": "Column_11",
+        "sample": "None"
+      },
+      {
+        "index": 12,
+        "column": "Column_12",
+        "sample": "None"
+      },
+      {
+        "index": 13,
+        "column": "Column_13",
+        "sample": "None"
+      },
+      {
+        "index": 14,
+        "column": "Column_14",
+        "sample": "None"
+      },
+      {
+        "index": 15,
+        "column": "Column_15",
+        "sample": "None"
+      },
+      {
+        "index": 16,
+        "column": "Column_16",
+        "sample": "None"
+      },
+      {
+        "index": 17,
+        "column": "Column_17",
+        "sample": "None"
+      },
+      {
+        "index": 18,
+        "column": "Column_18",
+        "sample": "None"
+      },
+      {
+        "index": 19,
+        "column": "Column_19",
+        "sample": "None"
+      },
+      {
+        "index": 20,
+        "column": "Column_20",
+        "sample": "None"
+      },
+      {
+        "index": 21,
+        "column": "Column_21",
+        "sample": "None"
+      },
+      {
+        "index": 22,
+        "column": "Column_22",
+        "sample": "None"
+      },
+      {
+        "index": 23,
+        "column": "Column_23",
+        "sample": "None"
+      },
+      {
+        "index": 24,
+        "column": "Column_24",
+        "sample": "None"
+      },
+      {
+        "index": 25,
+        "column": "Column_25",
+        "sample": "None"
+      },
+      {
+        "index": 26,
+        "column": "Column_26",
+        "sample": "None"
+      },
+      {
+        "index": 27,
+        "column": "Column_27",
+        "sample": "None"
+      },
+      {
+        "index": 28,
+        "column": "Column_28",
+        "sample": "None"
+      },
+      {
+        "index": 29,
+        "column": "Column_29",
+        "sample": "None"
+      },
+      {
+        "index": 30,
+        "column": "Column_30",
+        "sample": "None"
+      },
+      {
+        "index": 31,
+        "column": "Column_31",
+        "sample": "None"
+      },
+      {
+        "index": 32,
+        "column": "Column_32",
+        "sample": "None"
+      },
+      {
+        "index": 33,
+        "column": "Column_33",
+        "sample": "None"
+      },
+      {
+        "index": 34,
+        "column": "Column_34",
+        "sample": "None"
+      },
+      {
+        "index": 35,
+        "column": "Column_35",
+        "sample": "None"
+      },
+      {
+        "index": 36,
+        "column": "Column_36",
+        "sample": "None"
+      },
+      {
+        "index": 37,
+        "column": "Column_37",
+        "sample": "None"
+      },
+      {
+        "index": 38,
+        "column": "Column_38",
+        "sample": "None"
+      },
+      {
+        "index": 39,
+        "column": "Column_39",
+        "sample": "None"
+      },
+      {
+        "index": 40,
+        "column": "Column_40",
+        "sample": "None"
+      },
+      {
+        "index": 41,
+        "column": "Column_41",
+        "sample": "None"
+      },
+      {
+        "index": 42,
+        "column": "Column_42",
+        "sample": "None"
+      },
+      {
+        "index": 43,
+        "column": "Column_43",
+        "sample": "None"
+      },
+      {
+        "index": 44,
+        "column": "Column_44",
+        "sample": "None"
+      },
+      {
+        "index": 45,
+        "column": "Column_45",
+        "sample": "None"
+      },
+      {
+        "index": 46,
+        "column": "Column_46",
+        "sample": "None"
+      },
+      {
+        "index": 47,
+        "column": "Column_47",
+        "sample": "None"
+      },
+      {
+        "index": 48,
+        "column": "Column_48",
+        "sample": "None"
+      },
+      {
+        "index": 49,
+        "column": "Column_49",
+        "sample": "None"
+      },
+      {
+        "index": 50,
+        "column": "Column_50",
+        "sample": "None"
+      },
+      {
+        "index": 51,
+        "column": "Column_51",
+        "sample": "None"
+      },
+      {
+        "index": 52,
+        "column": "Column_52",
+        "sample": "None"
+      }
+    ],
+    "sample_rows": [
+      {
+        "LHIMS ANC Register From 01-10-2024 To 31-10-2024": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": "",
+        "Column_27": "",
+        "Column_28": "",
+        "Column_29": "",
+        "Column_30": "",
+        "Column_31": "",
+        "Column_32": "",
+        "Column_33": "",
+        "Column_34": "",
+        "Column_35": "",
+        "Column_36": "",
+        "Column_37": "",
+        "Column_38": "",
+        "Column_39": "",
+        "Column_40": "",
+        "Column_41": "",
+        "Column_42": "",
+        "Column_43": "",
+        "Column_44": "",
+        "Column_45": "",
+        "Column_46": "",
+        "Column_47": "",
+        "Column_48": "",
+        "Column_49": "",
+        "Column_50": "",
+        "Column_51": "",
+        "Column_52": ""
+      },
+      {
+        "LHIMS ANC Register From 01-10-2024 To 31-10-2024": "From Date : 01-10-2024",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": "",
+        "Column_27": "",
+        "Column_28": "",
+        "Column_29": "",
+        "Column_30": "",
+        "Column_31": "",
+        "Column_32": "",
+        "Column_33": "",
+        "Column_34": "",
+        "Column_35": "",
+        "Column_36": "",
+        "Column_37": "",
+        "Column_38": "",
+        "Column_39": "",
+        "Column_40": "",
+        "Column_41": "",
+        "Column_42": "",
+        "Column_43": "",
+        "Column_44": "",
+        "Column_45": "",
+        "Column_46": "",
+        "Column_47": "",
+        "Column_48": "",
+        "Column_49": "",
+        "Column_50": "",
+        "Column_51": "",
+        "Column_52": ""
+      },
+      {
+        "LHIMS ANC Register From 01-10-2024 To 31-10-2024": "To Date : 31-10-2024",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": "",
+        "Column_27": "",
+        "Column_28": "",
+        "Column_29": "",
+        "Column_30": "",
+        "Column_31": "",
+        "Column_32": "",
+        "Column_33": "",
+        "Column_34": "",
+        "Column_35": "",
+        "Column_36": "",
+        "Column_37": "",
+        "Column_38": "",
+        "Column_39": "",
+        "Column_40": "",
+        "Column_41": "",
+        "Column_42": "",
+        "Column_43": "",
+        "Column_44": "",
+        "Column_45": "",
+        "Column_46": "",
+        "Column_47": "",
+        "Column_48": "",
+        "Column_49": "",
+        "Column_50": "",
+        "Column_51": "",
+        "Column_52": ""
+      },
+      {
+        "LHIMS ANC Register From 01-10-2024 To 31-10-2024": "Clinic : Volta Regional Hospital",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": "",
+        "Column_27": "",
+        "Column_28": "",
+        "Column_29": "",
+        "Column_30": "",
+        "Column_31": "",
+        "Column_32": "",
+        "Column_33": "",
+        "Column_34": "",
+        "Column_35": "",
+        "Column_36": "",
+        "Column_37": "",
+        "Column_38": "",
+        "Column_39": "",
+        "Column_40": "",
+        "Column_41": "",
+        "Column_42": "",
+        "Column_43": "",
+        "Column_44": "",
+        "Column_45": "",
+        "Column_46": "",
+        "Column_47": "",
+        "Column_48": "",
+        "Column_49": "",
+        "Column_50": "",
+        "Column_51": "",
+        "Column_52": ""
+      },
+      {
+        "LHIMS ANC Register From 01-10-2024 To 31-10-2024": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": "",
+        "Column_27": "",
+        "Column_28": "",
+        "Column_29": "",
+        "Column_30": "",
+        "Column_31": "",
+        "Column_32": "",
+        "Column_33": "",
+        "Column_34": "",
+        "Column_35": "",
+        "Column_36": "",
+        "Column_37": "",
+        "Column_38": "",
+        "Column_39": "",
+        "Column_40": "",
+        "Column_41": "",
+        "Column_42": "",
+        "Column_43": "",
+        "Column_44": "",
+        "Column_45": "",
+        "Column_46": "",
+        "Column_47": "",
+        "Column_48": "",
+        "Column_49": "",
+        "Column_50": "",
+        "Column_51": "",
+        "Column_52": ""
+      }
+    ]
+  },
+  "Medical Laboratory": {
+    "file": "Medical_Laboratory_2024_Oct.xlsx",
+    "rows": 6737,
+    "columns": 26,
+    "headers": [
+      "LHIMS Medical Laboratory Register From 01-10-2024 To 31-10-2024",
+      "Column_2",
+      "Column_3",
+      "Column_4",
+      "Column_5",
+      "Column_6",
+      "Column_7",
+      "Column_8",
+      "Column_9",
+      "Column_10",
+      "Column_11",
+      "Column_12",
+      "Column_13",
+      "Column_14",
+      "Column_15",
+      "Column_16",
+      "Column_17",
+      "Column_18",
+      "Column_19",
+      "Column_20",
+      "Column_21",
+      "Column_22",
+      "Column_23",
+      "Column_24",
+      "Column_25",
+      "Column_26"
+    ],
+    "column_info": [
+      {
+        "index": 1,
+        "column": "LHIMS Medical Laboratory Register From 01-10-2024 To 31-10-2024",
+        "sample": "None"
+      },
+      {
+        "index": 2,
+        "column": "Column_2",
+        "sample": "None"
+      },
+      {
+        "index": 3,
+        "column": "Column_3",
+        "sample": "None"
+      },
+      {
+        "index": 4,
+        "column": "Column_4",
+        "sample": "None"
+      },
+      {
+        "index": 5,
+        "column": "Column_5",
+        "sample": "None"
+      },
+      {
+        "index": 6,
+        "column": "Column_6",
+        "sample": "None"
+      },
+      {
+        "index": 7,
+        "column": "Column_7",
+        "sample": "None"
+      },
+      {
+        "index": 8,
+        "column": "Column_8",
+        "sample": "None"
+      },
+      {
+        "index": 9,
+        "column": "Column_9",
+        "sample": "None"
+      },
+      {
+        "index": 10,
+        "column": "Column_10",
+        "sample": "None"
+      },
+      {
+        "index": 11,
+        "column": "Column_11",
+        "sample": "None"
+      },
+      {
+        "index": 12,
+        "column": "Column_12",
+        "sample": "None"
+      },
+      {
+        "index": 13,
+        "column": "Column_13",
+        "sample": "None"
+      },
+      {
+        "index": 14,
+        "column": "Column_14",
+        "sample": "None"
+      },
+      {
+        "index": 15,
+        "column": "Column_15",
+        "sample": "None"
+      },
+      {
+        "index": 16,
+        "column": "Column_16",
+        "sample": "None"
+      },
+      {
+        "index": 17,
+        "column": "Column_17",
+        "sample": "None"
+      },
+      {
+        "index": 18,
+        "column": "Column_18",
+        "sample": "None"
+      },
+      {
+        "index": 19,
+        "column": "Column_19",
+        "sample": "None"
+      },
+      {
+        "index": 20,
+        "column": "Column_20",
+        "sample": "None"
+      },
+      {
+        "index": 21,
+        "column": "Column_21",
+        "sample": "None"
+      },
+      {
+        "index": 22,
+        "column": "Column_22",
+        "sample": "None"
+      },
+      {
+        "index": 23,
+        "column": "Column_23",
+        "sample": "None"
+      },
+      {
+        "index": 24,
+        "column": "Column_24",
+        "sample": "None"
+      },
+      {
+        "index": 25,
+        "column": "Column_25",
+        "sample": "None"
+      },
+      {
+        "index": 26,
+        "column": "Column_26",
+        "sample": "None"
+      }
+    ],
+    "sample_rows": [
+      {
+        "LHIMS Medical Laboratory Register From 01-10-2024 To 31-10-2024": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS Medical Laboratory Register From 01-10-2024 To 31-10-2024": "Directorate  : INVESTIGATIONS",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS Medical Laboratory Register From 01-10-2024 To 31-10-2024": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS Medical Laboratory Register From 01-10-2024 To 31-10-2024": "Clinic : Volta Regional Hospital",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      },
+      {
+        "LHIMS Medical Laboratory Register From 01-10-2024 To 31-10-2024": "",
+        "Column_2": "",
+        "Column_3": "",
+        "Column_4": "",
+        "Column_5": "",
+        "Column_6": "",
+        "Column_7": "",
+        "Column_8": "",
+        "Column_9": "",
+        "Column_10": "",
+        "Column_11": "",
+        "Column_12": "",
+        "Column_13": "",
+        "Column_14": "",
+        "Column_15": "",
+        "Column_16": "",
+        "Column_17": "",
+        "Column_18": "",
+        "Column_19": "",
+        "Column_20": "",
+        "Column_21": "",
+        "Column_22": "",
+        "Column_23": "",
+        "Column_24": "",
+        "Column_25": "",
+        "Column_26": ""
+      }
+    ]
+  }
+}

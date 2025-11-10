@@ -1,5 +1,19 @@
 # LHIMS Data Extraction Project - Volta Regional Hospital Hohoe
 
+## IMPORTANT INSTRUCTIONS FOR AI ASSISTANTS
+
+**BEFORE starting any new task**:
+1. **READ** `plan/ACTIVITIES.md` to understand what has been done previously
+2. **REVIEW** the session history and completed work to avoid duplication
+3. **CHECK** for any pending issues or follow-up tasks
+
+**AFTER completing any major task**:
+1. **UPDATE** `plan/ACTIVITIES.md` with:
+   - what the current changes might mean for the project.
+  
+
+---
+
 ## Project Overview
 
 **Hospital**: Volta Regional Hospital, Hohoe, Ghana

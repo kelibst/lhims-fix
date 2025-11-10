@@ -1,0 +1,1068 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Report - TAMIMU   JARIYA</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 8px 8px 0 0;
+    }
+    .header h1 { font-size: 28px; margin-bottom: 10px; }
+    .header .meta { opacity: 0.9; font-size: 14px; }
+
+    .demographics {
+      background: #f8f9fa;
+      padding: 30px;
+      border-bottom: 3px solid #667eea;
+    }
+    .demographics h2 {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .demo-item {
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+    }
+    .demo-item .label {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .demo-item .value {
+      font-size: 16px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .summary-card {
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+    }
+    .summary-card .label { font-size: 11px; color: #666; text-transform: uppercase; }
+    .summary-card .value { font-size: 22px; font-weight: bold; color: #333; margin-top: 5px; }
+
+    .section {
+      padding: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .section:last-child { border-bottom: none; }
+    .section h2 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #667eea;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+      font-style: italic;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .data-table th {
+      background: #f8f9fa;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+      border-bottom: 2px solid #e0e0e0;
+      font-size: 13px;
+    }
+    .data-table td {
+      padding: 12px;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: top;
+      font-size: 13px;
+    }
+    .data-table tr:hover { background: #f8f9fa; }
+    .data-table tr.abnormal { background: #fff3cd; }
+    .data-table tr.abnormal:hover { background: #ffe8a1; }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-success { background: #d4edda; color: #155724; }
+    .badge-warning { background: #fff3cd; color: #856404; }
+    .badge-danger { background: #f8d7da; color: #721c24; }
+    .badge-info { background: #d1ecf1; color: #0c5460; }
+
+    .alert {
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .alert-info {
+      background: #d1ecf1;
+      border: 1px solid #0c5460;
+      color: #0c5460;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📋 Complete Patient Medical Record</h1>
+      <div class="meta">
+        <strong>Patient:</strong> TAMIMU   JARIYA<br>
+        <strong>Patient Number:</strong> VR-A01-AAA2142<br>
+        <strong>Report Generated:</strong> 10/11/2025, 4:51:03 pm<br>
+        <strong>Data Extracted:</strong> 10/11/2025, 4:40:41 pm
+      </div>
+    </div>
+
+    <!-- PATIENT DEMOGRAPHICS -->
+    <div class="demographics">
+      <h2>👤 Patient Demographics</h2>
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="label">Full Name</div>
+          <div class="value">TAMIMU   JARIYA</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Patient Number</div>
+          <div class="value">VR-A01-AAA2142</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Date of Birth</div>
+          <div class="value">03-02-1992</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Age</div>
+          <div class="value">33 Year(s)</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Gender</div>
+          <div class="value">Female</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Blood Group</div>
+          <div class="value">Not recorded</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">NHIS Number</div>
+          <div class="value">30992120</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Mobile Phone</div>
+          <div class="value">(054)351-7504</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Religion</div>
+          <div class="value">muslim</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Marital Status</div>
+          <div class="value">Married</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Weight</div>
+          <div class="value">88 Kg</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Membership Type</div>
+          <div class="value">Retail</div>
+        </div>
+      </div>
+      
+        <div class="demo-item" style="margin-top:20px;">
+          <div class="label">Address</div>
+          <div class="value">ZONGO PICNIC-GBI BLA @ MOHAMMED SEIBU'S HSE, Hohoe, Volta Region</div>
+        </div>
+      
+    </div>
+
+    <!-- DATA SUMMARY -->
+    <div class="summary">
+      <div class="summary-card">
+        <div class="label">Admissions (IPD)</div>
+        <div class="value">2</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Consultations (OPD)</div>
+        <div class="value">20</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Prescriptions</div>
+        <div class="value">64</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Lab Results</div>
+        <div class="value">30</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Surgical Procedures</div>
+        <div class="value">1</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Attachments</div>
+        <div class="value">2</div>
+      </div>
+    </div>
+
+    <!-- LAB RESULTS -->
+    <div class="section">
+      <h2>🔬 Laboratory Results - 30 records</h2>
+      
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Test Date</th>
+              <th>Test Name</th>
+              <th>Result</th>
+              <th>Unit</th>
+              <th>Reference Range</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>WBC.</strong></td>
+                  <td><strong style="font-size:14px;">10.44</strong></td>
+                  <td>IU/L</td>
+                  <td>4-11</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>22-08-2025</td>
+                  <td><strong>PCT</strong></td>
+                  <td><strong style="font-size:14px;">0.39</strong></td>
+                  <td>%</td>
+                  <td>0.17 - 0.35</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>P-LCR</strong></td>
+                  <td><strong style="font-size:14px;">25.1</strong></td>
+                  <td>%</td>
+                  <td>13.0 - 43.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>RDW-CV</strong></td>
+                  <td><strong style="font-size:14px;">13.7</strong></td>
+                  <td>%</td>
+                  <td>11.0 - 16.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>RDW-SD</strong></td>
+                  <td><strong style="font-size:14px;">43.8</strong></td>
+                  <td>fL</td>
+                  <td>37.0 - 54.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>22-08-2025</td>
+                  <td><strong>MacroR</strong></td>
+                  <td><strong style="font-size:14px;">3.3</strong></td>
+                  <td>%</td>
+                  <td>4.0 - 10.0</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>22-08-2025</td>
+                  <td><strong>MicroR</strong></td>
+                  <td><strong style="font-size:14px;">2.4</strong></td>
+                  <td>%</td>
+                  <td>0.2 - 1.2</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>IG%</strong></td>
+                  <td><strong style="font-size:14px;">0.5</strong></td>
+                  <td>%</td>
+                  <td>0.0 - 72.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>IG#</strong></td>
+                  <td><strong style="font-size:14px;">0.05</strong></td>
+                  <td>*10^9/L</td>
+                  <td>0.0 - 7.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>LYMPH%</strong></td>
+                  <td><strong style="font-size:14px;">26.4</strong></td>
+                  <td>%</td>
+                  <td>20.0 - 50.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>MONO%</strong></td>
+                  <td><strong style="font-size:14px;">9.2</strong></td>
+                  <td>%</td>
+                  <td>0.0 - 14.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>BASO%</strong></td>
+                  <td><strong style="font-size:14px;">0.4</strong></td>
+                  <td>%</td>
+                  <td>0.0 - 1.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>MEAN PLATELET VOLUME (MPV)</strong></td>
+                  <td><strong style="font-size:14px;">10.2</strong></td>
+                  <td>fL</td>
+                  <td>9.0 - 13.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>PLATELET DISTRIBUTION WIDTH (PDW)</strong></td>
+                  <td><strong style="font-size:14px;">11.0</strong></td>
+                  <td>fL</td>
+                  <td>9.0 - 17.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>NEUT#</strong></td>
+                  <td><strong style="font-size:14px;">6.42</strong></td>
+                  <td>*10^9/uL </td>
+                  <td>1.5 - 7.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>PLATELET COUNT </strong></td>
+                  <td><strong style="font-size:14px;">385.0</strong></td>
+                  <td>*10^9/L</td>
+                  <td>140.0 - 440.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>Basophils #</strong></td>
+                  <td><strong style="font-size:14px;">0.04</strong></td>
+                  <td>10^9/L</td>
+                  <td>0.0 - 0.4</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>22-08-2025</td>
+                  <td><strong>Monocytes #</strong></td>
+                  <td><strong style="font-size:14px;">0.96</strong></td>
+                  <td>10^9/L</td>
+                  <td>0.0 - 0.7</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>LYMPH#</strong></td>
+                  <td><strong style="font-size:14px;">2.76</strong></td>
+                  <td>10^9/L</td>
+                  <td>1.0 - 3.7</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>NEUT%</strong></td>
+                  <td><strong style="font-size:14px;">61.5</strong></td>
+                  <td>%</td>
+                  <td>37.0 - 72.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>Mean Corp.Hb.Con. (MCHC) </strong></td>
+                  <td><strong style="font-size:14px;">33.6</strong></td>
+                  <td>g/dL</td>
+                  <td>31.0 - 36.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>Mean Corpuscular Hb.(MCH)</strong></td>
+                  <td><strong style="font-size:14px;">29.2</strong></td>
+                  <td>pg</td>
+                  <td>26.0 - 36.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>Mean Corpuscular Vol(MCV) </strong></td>
+                  <td><strong style="font-size:14px;">87.0</strong></td>
+                  <td>fL</td>
+                  <td>80.0 - 97.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>22-08-2025</td>
+                  <td><strong>HCT</strong></td>
+                  <td><strong style="font-size:14px;">28.0</strong></td>
+                  <td>%</td>
+                  <td>40.0 - 50.0</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>RBC</strong></td>
+                  <td><strong style="font-size:14px;">3.22</strong></td>
+                  <td>*10^12/L</td>
+                  <td>2.5 - 6.3</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>22-08-2025</td>
+                  <td><strong>HGB</strong></td>
+                  <td><strong style="font-size:14px;">9.4</strong></td>
+                  <td>g/dL</td>
+                  <td>M:13.5-18.0;F:11.5-16.0</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>EO%</strong></td>
+                  <td><strong style="font-size:14px;">2.5</strong></td>
+                  <td>%</td>
+                  <td>1.0 - 6.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>22-08-2025</td>
+                  <td><strong>Eosinophils#</strong></td>
+                  <td><strong style="font-size:14px;">0.26</strong></td>
+                  <td>10^9/L</td>
+                  <td>0.02 - 0.60</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>29-12-2023</td>
+                  <td><strong>IgM</strong></td>
+                  <td><strong style="font-size:14px;">POSITIVE</strong></td>
+                  <td></td>
+                  <td> </td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>29-12-2023</td>
+                  <td><strong>IgG</strong></td>
+                  <td><strong style="font-size:14px;">POSITIVE</strong></td>
+                  <td></td>
+                  <td> </td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+            
+          </tbody>
+        </table>
+      
+    </div>
+
+    <!-- SURGICAL RECORDS -->
+    
+    <div class="section">
+      <h2>🏥 Surgical Procedures - 1 records</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Surgery Date</th>
+            <th>Procedure</th>
+            <th>Operating Theater</th>
+            <th>Duration</th>
+            <th>Status</th>
+            <th>Admission</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>31-08-2025</td>
+              <td><strong>Spontaneous Vaginal Delivery with or without Episiotomy</strong></td>
+              <td>General Operation Theater</td>
+              <td>00:01:00 - 00:01:00</td>
+              <td><span class="badge badge-success">Completed</span></td>
+              <td>ADMT-22362</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
+
+    <!-- ADMISSIONS -->
+    <div class="section">
+      <h2>🏥 Admissions (IPD) - 2 records</h2>
+      
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Admit Date</th>
+              <th>Discharge Date</th>
+              <th>Ward/Room</th>
+              <th>Bed</th>
+              <th>Chief Complaint</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>30-08-2025</td>
+                <td>31-08-2025</td>
+                <td>Labour Ward</td>
+                <td>Bed1</td>
+                <td>LAP, WAIST PAIN</td>
+                <td><span class="badge badge-success">Discharged</span></td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td>26-02-2023</td>
+                <td>Lying-In Ward</td>
+                <td>Bed16</td>
+                <td>lower abdominal pain</td>
+                <td><span class="badge badge-success">Discharged</span></td>
+              </tr>
+            
+          </tbody>
+        </table>
+        
+          <div style="margin-top:20px;">
+            <h3 style="font-size:16px;color:#555;margin-bottom:10px;">📝 Admission Notes</h3>
+            
+              <div style="background:#f8f9fa;padding:15px;border-left:4px solid #667eea;margin-bottom:10px;border-radius:4px;">
+                <strong style="color:#667eea;">Admitted: 30-08-2025</strong><br>
+                <div style="margin-top:8px;font-size:13px;line-height:1.6;white-space:pre-wrap;max-height:300px;overflow-y:auto;">ADMISSION:Â Client walked into the ward at 1:50am accompanied by her relatives.
+HISTORY: Client G4P2A+1Â  with 39 weeks + 3days gestation, EDD 03/09/25 by scan, an attendant of Adabraka Health Centre with a total of 10Â ANC visits presented with lower abdominal pains and waist pains onset 10am today.
+MED/SURG HISTORY:Â Client has no medical nor surgical history
+SOCIAL HISTORY:Â Client does not smoke nor drinks alcohol.
+OBSERVATION AND ASSESSMENT:Â On arrival was a pregnant woman fully conscious and in obvious pain but could give good account of herself. She is not looking pale nor jaundiced. No abnormality seen on head to toe examination.
+NURSING DIAGNOSIS:Â Acute Pain Related To painful uterine contractions.
+OBJECTIVES/OUTCOME:Â Client will be able to cope with pain throughout the process of labor.
+ORDERS:
+-Reassure client and relatives of competent care.
+-Monitor vital signs and record
+-Secure IV line, take sample for FBC,
+
+-Check urine glucose and protein
+-Do abdominal and vaginal examination
+
+-Monitor client for possible SVD
+
+-Inform ward doctor for review
+
+-Explain all procedures to client and document findings
+NURSING INTERVENTION:
+
+Client was received into a comfortable bed and was reassured of competent care. Baseline vital signs checked and recorded as T-36.5, P-83bpm, R-20cpm and B/P-124/69mmHg.
+
+Urine protein-Negative
+
+Urine glucose-Negative.
+On abdominal examination,
+SFH - 35cm
+FHR -136-144bpm.
+Presentation - breech
+Lie: Longitudinal
+
+Timed contractions on palpation 4:10 lasting 55-60 secs.
+
+On vaginal examination, cervix was fully effaced, 10cm dilated, membranes ruptured before arrival liquour clear,Â client was assisted into the delivery room with feet in vagina.Â Client Â was positioned and encouraged to bear down with contractions and rest in between. Ward doctor was around hence he was informed and immediately came to assist in delivery.Â  At 1:58pm Client had a successful delivery to a live female neonate who was delivered onto mother's abdomen. Baby was thoroughly cleaned and Â Cord clamped and cut at 1:59pm, baby separated from mother for suctioning and stimulation. AS-6/10 and 8/10 for first and fifth minutes respectively. Baby shown to mother for identification of sex and then congratulated. Skin to skin continued. Third stage actively managed and completed at 2:55pm without any complications. EBL-150ml. Perineum was intact on inspection. Essential care findings for baby were as follows wt-2.6kg, HC-35cm FL-47cm, HR-142bpm Resp-41cpm, RBS-3.4mmol/l.Â Â Baby put to breast as mother encouraged to breastfeed.
+NUTRITION: Client took Tuo and dry okro soup.
+ELIMINATION: Voids normally and has moved bowel once before arrival
+Discharge Plan: Client will be educated on the following after a successful delivery, exclusive breastfeeding, nutrition , family planning and liaise with the public Health unit for continuity of care.
+EVALUATION: General condition on arrival was stable.
+</div>
+              </div>
+            
+              <div style="background:#f8f9fa;padding:15px;border-left:4px solid #667eea;margin-bottom:10px;border-radius:4px;">
+                <strong style="color:#667eea;">Admitted: 25-02-2023</strong><br>
+                <div style="margin-top:8px;font-size:13px;line-height:1.6;white-space:pre-wrap;max-height:300px;overflow-y:auto;">ADMISSION* : client walked in to the ward at 2:03Â pmÂ  in the company of a relative.
+
+*HISTORY* : Client G3P1A+1Â with 39+4 days cyesis (EDD 28/02/2023) complained of lower abdominal pain onset 12:00 pm this afternoon.
+
+Â 
+
+*OBSERVATION AND ASSESSMENT* : On arrival was a neatly dressed young lady who gives good account of herself, No abnormality detected externally on head to toe examination.
+Baseline vital signs were checked and recorded as :
+T - 35.9
+P - 91Â bpm
+R - 22Â cpm
+BP - 158/103Â mmHg
+
+Â 
+
+Â 
+
+On abdominal examination.
+
+SFH- 34 cm
+Lie - longitudinal
+Presentation - cephalic
+
+Descent - 3/5TH
+FHR - 124 - 131Â bpm
+
+Â 
+
+On vaginal examination, vagina was warm and moist, cervix soft and thin, 7cm dilted.
+
+Â 
+
+*NURSING* *INTERVENTION* : Client was warmly received into a comfortable bed, reassurance given, history taken, vital signs checked and recorded, assessment done, findings were communicated to her.
+She was educated on condition and what to expect throughout period of admission. Blood sample taken and sent to the lab for FBC.
+she is being monitoredper partograph in the labour ward.
+
+Â 
+
+*LABORATORY* *INVESTIGATIONS* : Blood sample sent to the lab for FBC awaiting results.
+
+*MEDICATION* : No medications prescribed yet.
+
+*NUTRITION* : Client took banku as lunch.
+
+*ELIMINATION* : voided several times,moved bowel once today.
+
+*EVALUATION* : Condition is stable.
+</div>
+              </div>
+            
+          </div>
+        
+      
+    </div>
+
+    <!-- CONSULTATIONS -->
+    <div class="section">
+      <h2>🩺 Consultations (OPD) - 20 records</h2>
+      
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Department</th>
+              <th>Service</th>
+              <th>Doctor/Staff</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+                  <tr>
+                    <td>30-08-2025</td>
+                    <td>OBSTETRICS AND GYNAECOLOGY</td>
+                    <td>ANTENATAL / POSTNATAL CLINIC</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">Scheduled</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>25-08-2025</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">Scheduled</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>22-08-2025</td>
+                    <td>OBSTETRICS AND GYNAECOLOGY</td>
+                    <td>ANTENATAL / POSTNATAL CLINIC</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">In Draft</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>22-08-2025</td>
+                    <td>INTERNAL MEDICINE</td>
+                    <td>GENERAL OPD</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">Scheduled</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>22-08-2025</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>Bernice Sika Penty</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>29-12-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>Franklin Duncan Sylvester</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>29-12-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>Franklin Duncan Sylvester</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>29-12-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>Franklin Duncan Sylvester</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>29-12-2023</td>
+                    <td>INTERNAL MEDICINE</td>
+                    <td>GENERAL OPD</td>
+                    <td>Eyram Hanu</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>02-05-2023</td>
+                    <td>INTERNAL MEDICINE</td>
+                    <td>GENERAL OPD</td>
+                    <td>Janet Sam</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>18-04-2023</td>
+                    <td>OBSTETRICS AND GYNAECOLOGY</td>
+                    <td>ANTENATAL / POSTNATAL CLINIC</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">Scheduled</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>11-04-2023</td>
+                    <td>OBSTETRICS AND GYNAECOLOGY</td>
+                    <td>ANTENATAL / POSTNATAL CLINIC</td>
+                    <td>Faith Makafan Otaro</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>13-03-2023</td>
+                    <td>OBSTETRICS AND GYNAECOLOGY</td>
+                    <td>ANTENATAL / POSTNATAL CLINIC</td>
+                    <td>Faith Makafan Otaro</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>25-02-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>Rita Lindsay Hlovor</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>20-02-2023</td>
+                    <td>OBSTETRICS AND GYNAECOLOGY</td>
+                    <td>ANTENATAL / POSTNATAL CLINIC</td>
+                    <td>Ganiyatu Judith Jinadu</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+            <tr><td colspan="5" style="text-align:center;font-style:italic;">... and 5 more consultations</td></tr>
+          </tbody>
+        </table>
+      
+    </div>
+
+    <!-- PRESCRIPTIONS -->
+    <div class="section">
+      <h2>💊 Prescriptions - 64 records</h2>
+      
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Medication</th>
+              <th>Strength</th>
+              <th>Dosage</th>
+              <th>Frequency</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>13-02-2023</td>
+                <td><strong>Iron (III) Polymaltose Complex Capsule</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>N/A</td>
+                <td>1-0-1</td>
+                <td>BDS</td>
+                <td>30 days</td>
+              </tr>
+            
+              <tr>
+                <td>13-02-2023</td>
+                <td><strong>Ascorbic Acid </strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>100mg</td>
+                <td>1-1-1</td>
+                <td>TDS</td>
+                <td>30 days</td>
+              </tr>
+            
+              <tr>
+                <td>13-02-2023</td>
+                <td><strong>Magnesium Trisilicate Mixture</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>N/A</td>
+                <td>1-1-1</td>
+                <td>TID</td>
+                <td>7 days</td>
+              </tr>
+            
+              <tr>
+                <td>20-02-2023</td>
+                <td><strong>Iron (III) Polymaltose Complex Capsule</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>N/A</td>
+                <td>1-0-1</td>
+                <td>BDS</td>
+                <td>30 days</td>
+              </tr>
+            
+              <tr>
+                <td>20-02-2023</td>
+                <td><strong>Multivitamin Tablet</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>N/A</td>
+                <td>1-1-1</td>
+                <td>TDS</td>
+                <td>30 days</td>
+              </tr>
+            
+              <tr>
+                <td>20-02-2023</td>
+                <td><strong>Ascorbic Acid </strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>100mg</td>
+                <td>1-1-1</td>
+                <td>TDS</td>
+                <td>30 days</td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td><strong>Hyoscine Butylbromide Injection</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>20 mg/ mL</td>
+                <td>1-0-0</td>
+                <td>Stat</td>
+                <td>1 days</td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td><strong>Sodium Chloride Infusion (0.9% (500 mL))</strong><br>
+                    <small style="color:#666;">Sodium Chloride Infusion</small></td>
+                <td>0.9% (500 mL)</td>
+                <td>1-0-0</td>
+                <td>Stat</td>
+                <td>1 days</td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td><strong>Phytomenadione Injection</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>1 mg/mL (Paediatric)</td>
+                <td>1-0-0</td>
+                <td>Stat</td>
+                <td>1 days</td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td><strong>Amoxicillin + Clavulanic Acid Tablet</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>500 mg + 125 mg</td>
+                <td>0-1-1</td>
+                <td>BID</td>
+                <td>7 days</td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td><strong>Chloramphenicol Eye Drops</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>0.005</td>
+                <td>1-1-1</td>
+                <td>TDS</td>
+                <td>1 days</td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td><strong>Paracetamol Tablet</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>500 mg</td>
+                <td>1-1-1</td>
+                <td>TDS</td>
+                <td>5 days</td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td><strong>Giving Set </strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>N/A</td>
+                <td>1-0-0</td>
+                <td>Stat</td>
+                <td>1 days</td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td><strong>Ascorbic Acid </strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>100mg</td>
+                <td>1-1-1</td>
+                <td>TDS</td>
+                <td>14 days</td>
+              </tr>
+            
+              <tr>
+                <td>25-02-2023</td>
+                <td><strong>Oxytocin Injection</strong><br>
+                    <small style="color:#666;"></small></td>
+                <td>10 units/mL</td>
+                <td>1-0-0</td>
+                <td>Stat</td>
+                <td>1 days</td>
+              </tr>
+            
+            <tr><td colspan="6" style="text-align:center;font-style:italic;">... and 49 more prescriptions</td></tr>
+          </tbody>
+        </table>
+      
+    </div>
+
+    <!-- FOOTER -->
+    <div class="section" style="background:#f8f9fa;">
+      <p style="text-align:center;color:#666;font-size:14px;">
+        <strong>Continuity of Care Assessment:</strong> This patient has comprehensive medical records including demographics,
+        30 lab results, 20 consultations,
+        64 prescriptions, and 2 hospital admissions.
+        Data is sufficient for continuity of care.<br><br>
+        <strong>Report Generated:</strong> 10/11/2025, 4:51:03 pm<br>
+        <strong>Source:</strong> LHIMS Data Extraction - Volta Regional Hospital, Hohoe
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function isValueInRange(value, range) {
+      try {
+        const numValue = parseFloat(value);
+        if (isNaN(numValue)) return true;
+
+        // Handle "min - max" format
+        const rangeMatch = range.match(/([0-9.]+)s*-s*([0-9.]+)/);
+        if (rangeMatch) {
+          const min = parseFloat(rangeMatch[1]);
+          const max = parseFloat(rangeMatch[2]);
+          return numValue >= min && numValue <= max;
+        }
+
+        return true;
+      } catch {
+        return true;
+      }
+    }
+  </script>
+</body>
+</html>

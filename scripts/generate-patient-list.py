@@ -26,8 +26,8 @@ DATA_FOLDERS = [
     'data/medical-laboratory',
 ]
 
-# Patient number pattern (VR-A01-AAANNNN)
-PATIENT_NO_PATTERN = re.compile(r'VR-[A-Z]\d{2}-[A-Z]{3}\d+')
+# Patient number pattern (XX-A01-AAANNNN) - Accepts all facility codes
+PATIENT_NO_PATTERN = re.compile(r'[A-Z]{2}-[A-Z]\d{2}-[A-Z]{3}\d+')
 
 def find_header_row(sheet, max_search=20):
     """Find the row with column headers"""
@@ -146,7 +146,7 @@ def generate_patient_list():
         f'# Files scanned: {file_count}',
         f'# Source folders: {", ".join(DATA_FOLDERS)}',
         '#',
-        '# Format: VR-A01-AAANNNN (one patient number per line)',
+        '# Format: XX-A01-AAANNNN (one patient number per line, all facility codes)',
         '# Lines starting with # are comments and will be ignored',
         '#',
         ''

@@ -25,8 +25,8 @@ const DATA_FOLDERS = [
   'data/medical-laboratory',
 ];
 
-// Patient number pattern (VR-A01-AAANNNN)
-const PATIENT_NO_PATTERN = /VR-[A-Z]\d{2}-[A-Z]{3}\d+/;
+// Patient number pattern (XX-A01-AAANNNN) - Accepts all facility codes
+const PATIENT_NO_PATTERN = /[A-Z]{2}-[A-Z]\d{2}-[A-Z]{3}\d+/;
 
 /**
  * Find the row with column headers
@@ -204,7 +204,7 @@ function generatePatientList() {
     `# Files scanned: ${fileCount}`,
     `# Source folders: ${DATA_FOLDERS.join(', ')}`,
     '#',
-    '# Format: VR-A01-AAANNNN (one patient number per line)',
+    '# Format: XX-A01-AAANNNN (one patient number per line, all facility codes)',
     '# Lines starting with # are comments and will be ignored',
     '#',
     '',

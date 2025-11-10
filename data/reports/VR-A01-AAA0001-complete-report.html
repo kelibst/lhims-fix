@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Report - TEST PATIENT ONE</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 8px 8px 0 0;
+    }
+    .header h1 { font-size: 28px; margin-bottom: 10px; }
+    .header .meta { opacity: 0.9; font-size: 14px; }
+
+    .demographics {
+      background: #f8f9fa;
+      padding: 30px;
+      border-bottom: 3px solid #667eea;
+    }
+    .demographics h2 {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .demo-item {
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+    }
+    .demo-item .label {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .demo-item .value {
+      font-size: 16px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .summary-card {
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+    }
+    .summary-card .label { font-size: 11px; color: #666; text-transform: uppercase; }
+    .summary-card .value { font-size: 22px; font-weight: bold; color: #333; margin-top: 5px; }
+
+    .section {
+      padding: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .section:last-child { border-bottom: none; }
+    .section h2 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #667eea;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+      font-style: italic;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .data-table th {
+      background: #f8f9fa;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+      border-bottom: 2px solid #e0e0e0;
+      font-size: 13px;
+    }
+    .data-table td {
+      padding: 12px;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: top;
+      font-size: 13px;
+    }
+    .data-table tr:hover { background: #f8f9fa; }
+    .data-table tr.abnormal { background: #fff3cd; }
+    .data-table tr.abnormal:hover { background: #ffe8a1; }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-success { background: #d4edda; color: #155724; }
+    .badge-warning { background: #fff3cd; color: #856404; }
+    .badge-danger { background: #f8d7da; color: #721c24; }
+    .badge-info { background: #d1ecf1; color: #0c5460; }
+
+    .alert {
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .alert-info {
+      background: #d1ecf1;
+      border: 1px solid #0c5460;
+      color: #0c5460;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📋 Complete Patient Medical Record</h1>
+      <div class="meta">
+        <strong>Patient:</strong> TEST PATIENT ONE<br>
+        <strong>Patient Number:</strong> VR-A01-AAA0001<br>
+        <strong>Report Generated:</strong> 10/11/2025, 4:51:03 pm<br>
+        <strong>Data Extracted:</strong> 10/11/2025, 4:40:45 pm
+      </div>
+    </div>
+
+    <!-- PATIENT DEMOGRAPHICS -->
+    <div class="demographics">
+      <h2>👤 Patient Demographics</h2>
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="label">Full Name</div>
+          <div class="value">TEST PATIENT ONE</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Patient Number</div>
+          <div class="value">VR-A01-AAA0001</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Date of Birth</div>
+          <div class="value">01-01-2002</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Age</div>
+          <div class="value">21 Year(s)</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Gender</div>
+          <div class="value">Male</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Blood Group</div>
+          <div class="value">Not recorded</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">NHIS Number</div>
+          <div class="value">N/A</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Mobile Phone</div>
+          <div class="value">0000000000</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Religion</div>
+          <div class="value">CHRISTIAN</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Marital Status</div>
+          <div class="value">Single</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Weight</div>
+          <div class="value">N/A</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Membership Type</div>
+          <div class="value">Non-Insured</div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- DATA SUMMARY -->
+    <div class="summary">
+      <div class="summary-card">
+        <div class="label">Admissions (IPD)</div>
+        <div class="value">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Consultations (OPD)</div>
+        <div class="value">8</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Prescriptions</div>
+        <div class="value">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Lab Results</div>
+        <div class="value">28</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Surgical Procedures</div>
+        <div class="value">2</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Attachments</div>
+        <div class="value">0</div>
+      </div>
+    </div>
+
+    <!-- LAB RESULTS -->
+    <div class="section">
+      <h2>🔬 Laboratory Results - 28 records</h2>
+      
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Test Date</th>
+              <th>Test Name</th>
+              <th>Result</th>
+              <th>Unit</th>
+              <th>Reference Range</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>WBC.</strong></td>
+                  <td><strong style="font-size:14px;">6.21</strong></td>
+                  <td>IU/L</td>
+                  <td>4-11</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>02-02-2023</td>
+                  <td><strong>MacroR</strong></td>
+                  <td><strong style="font-size:14px;">3.7</strong></td>
+                  <td>%</td>
+                  <td>4.0 - 10.0</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>02-02-2023</td>
+                  <td><strong>MicroR</strong></td>
+                  <td><strong style="font-size:14px;">2.1</strong></td>
+                  <td>%</td>
+                  <td>0.2 - 1.2</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>RDW-CV</strong></td>
+                  <td><strong style="font-size:14px;">13.7</strong></td>
+                  <td>%</td>
+                  <td>11.0 - 16.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>RDW-SD</strong></td>
+                  <td><strong style="font-size:14px;">41.7</strong></td>
+                  <td>fL</td>
+                  <td>37.0 - 54.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>IG#</strong></td>
+                  <td><strong style="font-size:14px;">0.05</strong></td>
+                  <td>*10^9/L</td>
+                  <td>0.0 - 7.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>IG%</strong></td>
+                  <td><strong style="font-size:14px;">0.8</strong></td>
+                  <td>%</td>
+                  <td>0.0 - 72.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>Basophils #</strong></td>
+                  <td><strong style="font-size:14px;">0.05</strong></td>
+                  <td>10^9/L</td>
+                  <td>0.0 - 0.4</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>Eosinophils#</strong></td>
+                  <td><strong style="font-size:14px;">0.07</strong></td>
+                  <td>10^9/L</td>
+                  <td>0.02 - 0.60</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>Monocytes #</strong></td>
+                  <td><strong style="font-size:14px;">0.57</strong></td>
+                  <td>10^9/L</td>
+                  <td>0.0 - 0.7</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>LYMPH#</strong></td>
+                  <td><strong style="font-size:14px;">1.77</strong></td>
+                  <td>10^9/L</td>
+                  <td>1.0 - 3.7</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>NEUT#</strong></td>
+                  <td><strong style="font-size:14px;">3.75</strong></td>
+                  <td>*10^9/uL </td>
+                  <td>1.5 - 7.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>BASO%</strong></td>
+                  <td><strong style="font-size:14px;">0.8</strong></td>
+                  <td>%</td>
+                  <td>0.0 - 1.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>EO%</strong></td>
+                  <td><strong style="font-size:14px;">1.1</strong></td>
+                  <td>%</td>
+                  <td>1.0 - 6.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>MONO%</strong></td>
+                  <td><strong style="font-size:14px;">9.2</strong></td>
+                  <td>%</td>
+                  <td>0.0 - 14.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>LYMPH%</strong></td>
+                  <td><strong style="font-size:14px;">28.5</strong></td>
+                  <td>%</td>
+                  <td>20.0 - 50.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>NEUT%</strong></td>
+                  <td><strong style="font-size:14px;">60.4</strong></td>
+                  <td>%</td>
+                  <td>37.0 - 72.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>PLATELET COUNT </strong></td>
+                  <td><strong style="font-size:14px;">291.0</strong></td>
+                  <td>*10^9/L</td>
+                  <td>140.0 - 440.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>Mean Corp.Hb.Con. (MCHC) </strong></td>
+                  <td><strong style="font-size:14px;">34.2</strong></td>
+                  <td>g/dL</td>
+                  <td>31.0 - 36.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>Mean Corpuscular Hb.(MCH)</strong></td>
+                  <td><strong style="font-size:14px;">29.4</strong></td>
+                  <td>pg</td>
+                  <td>26.0 - 36.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>Mean Corpuscular Vol(MCV) </strong></td>
+                  <td><strong style="font-size:14px;">85.8</strong></td>
+                  <td>fL</td>
+                  <td>80.0 - 97.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>02-02-2023</td>
+                  <td><strong>HCT</strong></td>
+                  <td><strong style="font-size:14px;">33.9</strong></td>
+                  <td>%</td>
+                  <td>40.0 - 50.0</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="abnormal">
+                  <td>02-02-2023</td>
+                  <td><strong>HGB</strong></td>
+                  <td><strong style="font-size:14px;">11.6</strong></td>
+                  <td>g/dL</td>
+                  <td>M:13.5-18.0;F:11.5-16.0</td>
+                  <td><span class="badge badge-warning">Abnormal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>RBC</strong></td>
+                  <td><strong style="font-size:14px;">3.95</strong></td>
+                  <td>*10^12/L</td>
+                  <td>2.5 - 6.3</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>PCT</strong></td>
+                  <td><strong style="font-size:14px;">0.27</strong></td>
+                  <td>%</td>
+                  <td>0.17 - 0.35</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>P-LCR</strong></td>
+                  <td><strong style="font-size:14px;">18.1</strong></td>
+                  <td>%</td>
+                  <td>13.0 - 43.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>MEAN PLATELET VOLUME (MPV)</strong></td>
+                  <td><strong style="font-size:14px;">9.2</strong></td>
+                  <td>fL</td>
+                  <td>9.0 - 13.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+                <tr class="">
+                  <td>02-02-2023</td>
+                  <td><strong>PLATELET DISTRIBUTION WIDTH (PDW)</strong></td>
+                  <td><strong style="font-size:14px;">9.5</strong></td>
+                  <td>fL</td>
+                  <td>9.0 - 17.0</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+              
+            
+          </tbody>
+        </table>
+      
+    </div>
+
+    <!-- SURGICAL RECORDS -->
+    
+    <div class="section">
+      <h2>🏥 Surgical Procedures - 2 records</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Surgery Date</th>
+            <th>Procedure</th>
+            <th>Operating Theater</th>
+            <th>Duration</th>
+            <th>Status</th>
+            <th>Admission</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>09-01-2023</td>
+              <td><strong>Abdominal Hysterectomy</strong></td>
+              <td>General Operation Theater</td>
+              <td>00:01:00 - 02:01:00</td>
+              <td><span class="badge badge-warning">Pending</span></td>
+              <td>ADMT-1</td>
+            </tr>
+          
+            <tr>
+              <td>13-01-2023</td>
+              <td><strong>test</strong></td>
+              <td>General Operation Theater</td>
+              <td>00:01:00 - 02:01:00</td>
+              <td><span class="badge badge-warning">Pending</span></td>
+              <td>ADMT-1</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
+
+    <!-- ADMISSIONS -->
+    <div class="section">
+      <h2>🏥 Admissions (IPD) - 0 records</h2>
+      <div class="empty-state">No admission records found</div>
+    </div>
+
+    <!-- CONSULTATIONS -->
+    <div class="section">
+      <h2>🩺 Consultations (OPD) - 8 records</h2>
+      
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Department</th>
+              <th>Service</th>
+              <th>Doctor/Staff</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+                  <tr>
+                    <td>02-02-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>LHIMS TOT</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>02-02-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">Scheduled</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>12-01-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">Scheduled</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>12-01-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">Scheduled</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>12-01-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">Scheduled</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>12-01-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>LHIMS TOT</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>12-01-2023</td>
+                    <td>INVESTIGATIONS</td>
+                    <td>GENERAL LAB SERVICES</td>
+                    <td>---</td>
+                    <td><span class="badge badge-warning">Scheduled</span></td>
+                  </tr>
+                
+                  <tr>
+                    <td>09-01-2023</td>
+                    <td>INTERNAL MEDICINE</td>
+                    <td>GENERAL OPD</td>
+                    <td>LHIMS TOT</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+            
+          </tbody>
+        </table>
+      
+    </div>
+
+    <!-- PRESCRIPTIONS -->
+    <div class="section">
+      <h2>💊 Prescriptions - 0 records</h2>
+      <div class="empty-state">No prescription records found</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="section" style="background:#f8f9fa;">
+      <p style="text-align:center;color:#666;font-size:14px;">
+        <strong>Continuity of Care Assessment:</strong> This patient has comprehensive medical records including demographics,
+        28 lab results, 8 consultations,
+        0 prescriptions, and 0 hospital admissions.
+        Data is sufficient for continuity of care.<br><br>
+        <strong>Report Generated:</strong> 10/11/2025, 4:51:03 pm<br>
+        <strong>Source:</strong> LHIMS Data Extraction - Volta Regional Hospital, Hohoe
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function isValueInRange(value, range) {
+      try {
+        const numValue = parseFloat(value);
+        if (isNaN(numValue)) return true;
+
+        // Handle "min - max" format
+        const rangeMatch = range.match(/([0-9.]+)s*-s*([0-9.]+)/);
+        if (rangeMatch) {
+          const min = parseFloat(rangeMatch[1]);
+          const max = parseFloat(rangeMatch[2]);
+          return numValue >= min && numValue <= max;
+        }
+
+        return true;
+      } catch {
+        return true;
+      }
+    }
+  </script>
+</body>
+</html>

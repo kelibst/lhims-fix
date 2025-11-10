@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Report - MERCY DZOGLO</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 8px 8px 0 0;
+    }
+    .header h1 { font-size: 28px; margin-bottom: 10px; }
+    .header .meta { opacity: 0.9; font-size: 14px; }
+
+    .demographics {
+      background: #f8f9fa;
+      padding: 30px;
+      border-bottom: 3px solid #667eea;
+    }
+    .demographics h2 {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .demo-item {
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+    }
+    .demo-item .label {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .demo-item .value {
+      font-size: 16px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .summary-card {
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+    }
+    .summary-card .label { font-size: 11px; color: #666; text-transform: uppercase; }
+    .summary-card .value { font-size: 22px; font-weight: bold; color: #333; margin-top: 5px; }
+
+    .section {
+      padding: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .section:last-child { border-bottom: none; }
+    .section h2 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #667eea;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+      font-style: italic;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .data-table th {
+      background: #f8f9fa;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+      border-bottom: 2px solid #e0e0e0;
+      font-size: 13px;
+    }
+    .data-table td {
+      padding: 12px;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: top;
+      font-size: 13px;
+    }
+    .data-table tr:hover { background: #f8f9fa; }
+    .data-table tr.abnormal { background: #fff3cd; }
+    .data-table tr.abnormal:hover { background: #ffe8a1; }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-success { background: #d4edda; color: #155724; }
+    .badge-warning { background: #fff3cd; color: #856404; }
+    .badge-danger { background: #f8d7da; color: #721c24; }
+    .badge-info { background: #d1ecf1; color: #0c5460; }
+
+    .alert {
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .alert-info {
+      background: #d1ecf1;
+      border: 1px solid #0c5460;
+      color: #0c5460;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📋 Complete Patient Medical Record</h1>
+      <div class="meta">
+        <strong>Patient:</strong> MERCY DZOGLO<br>
+        <strong>Patient Number:</strong> AB-A01-AAB9293<br>
+        <strong>Report Generated:</strong> 10/11/2025, 4:51:02 pm<br>
+        <strong>Data Extracted:</strong> 10/11/2025, 4:40:48 pm
+      </div>
+    </div>
+
+    <!-- PATIENT DEMOGRAPHICS -->
+    <div class="demographics">
+      <h2>👤 Patient Demographics</h2>
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="label">Full Name</div>
+          <div class="value">MERCY DZOGLO</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Patient Number</div>
+          <div class="value">AB-A01-AAB9293</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Date of Birth</div>
+          <div class="value">06-11-1993</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Age</div>
+          <div class="value">32 Year(s)</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Gender</div>
+          <div class="value">Female</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Blood Group</div>
+          <div class="value">O+</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">NHIS Number</div>
+          <div class="value">44695155</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Mobile Phone</div>
+          <div class="value">0548148839</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Religion</div>
+          <div class="value">N/A</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Marital Status</div>
+          <div class="value">Single</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Weight</div>
+          <div class="value">61 Kg</div>
+        </div>
+        <div class="demo-item">
+          <div class="label">Membership Type</div>
+          <div class="value">Retail</div>
+        </div>
+      </div>
+      
+        <div class="demo-item" style="margin-top:20px;">
+          <div class="label">Address</div>
+          <div class="value">Abakrampa, Abakrampa, Central Region</div>
+        </div>
+      
+    </div>
+
+    <!-- DATA SUMMARY -->
+    <div class="summary">
+      <div class="summary-card">
+        <div class="label">Admissions (IPD)</div>
+        <div class="value">1</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Consultations (OPD)</div>
+        <div class="value">1</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Prescriptions</div>
+        <div class="value">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Lab Results</div>
+        <div class="value">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Surgical Procedures</div>
+        <div class="value">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Attachments</div>
+        <div class="value">2</div>
+      </div>
+    </div>
+
+    <!-- LAB RESULTS -->
+    <div class="section">
+      <h2>🔬 Laboratory Results - 0 records</h2>
+      <div class="empty-state">No laboratory results found</div>
+    </div>
+
+    <!-- SURGICAL RECORDS -->
+    
+
+    <!-- ADMISSIONS -->
+    <div class="section">
+      <h2>🏥 Admissions (IPD) - 1 records</h2>
+      
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Admit Date</th>
+              <th>Discharge Date</th>
+              <th>Ward/Room</th>
+              <th>Bed</th>
+              <th>Chief Complaint</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>01-02-2023</td>
+                <td>01-02-2023</td>
+                <td>Lying-In Ward</td>
+                <td>Bed12</td>
+                <td>N/A</td>
+                <td><span class="badge badge-success">Discharged</span></td>
+              </tr>
+            
+          </tbody>
+        </table>
+        
+      
+    </div>
+
+    <!-- CONSULTATIONS -->
+    <div class="section">
+      <h2>🩺 Consultations (OPD) - 1 records</h2>
+      
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Department</th>
+              <th>Service</th>
+              <th>Doctor/Staff</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+                  <tr>
+                    <td>08-02-2023</td>
+                    <td>OBSTETRICS AND GYNAECOLOGY</td>
+                    <td>ANTENATAL / POSTNATAL CLINIC</td>
+                    <td>Faith Makafan Otaro</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                
+            
+          </tbody>
+        </table>
+      
+    </div>
+
+    <!-- PRESCRIPTIONS -->
+    <div class="section">
+      <h2>💊 Prescriptions - 0 records</h2>
+      <div class="empty-state">No prescription records found</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="section" style="background:#f8f9fa;">
+      <p style="text-align:center;color:#666;font-size:14px;">
+        <strong>Continuity of Care Assessment:</strong> This patient has comprehensive medical records including demographics,
+        0 lab results, 1 consultations,
+        0 prescriptions, and 1 hospital admissions.
+        Data is sufficient for continuity of care.<br><br>
+        <strong>Report Generated:</strong> 10/11/2025, 4:51:02 pm<br>
+        <strong>Source:</strong> LHIMS Data Extraction - Volta Regional Hospital, Hohoe
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function isValueInRange(value, range) {
+      try {
+        const numValue = parseFloat(value);
+        if (isNaN(numValue)) return true;
+
+        // Handle "min - max" format
+        const rangeMatch = range.match(/([0-9.]+)s*-s*([0-9.]+)/);
+        if (rangeMatch) {
+          const min = parseFloat(rangeMatch[1]);
+          const max = parseFloat(rangeMatch[2]);
+          return numValue >= min && numValue <= max;
+        }
+
+        return true;
+      } catch {
+        return true;
+      }
+    }
+  </script>
+</body>
+</html>
