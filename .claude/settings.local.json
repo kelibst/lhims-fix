@@ -38,7 +38,8 @@
       "Bash(node debug-consultation-fields.js:*)",
       "Bash(tee:*)",
       "Bash(test:*)",
-      "Bash(node analyze-pdf-requests.js:*)"
+      "Bash(node analyze-pdf-requests.js:*)",
+      "Bash(node check-ipd-pdf-success.js:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,10 +1,9 @@
-# Test Patient List - 5 patients for testing
+# Test Patient List - 4 patients for testing
 #
-# This is a small subset for testing the extraction before running on all 61,064 patients
+# Testing PDF extraction with optimized fast script
 #
 
 VR-A01-AAA0001
 VR-A01-AAA0002
-VR-A01-AAA0003
-VR-A01-AAA0004
-VR-A01-AAA0005
+VR-A01-AAA2142
+AB-A01-AAD6339

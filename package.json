@@ -18,8 +18,9 @@
     "extract:patients": "node scripts/extract-patient-json.js",
     "extract:patients:test": "node scripts/extract-patient-json.js test-patient-list.txt",
     "test": "echo \"No tests yet\" && exit 0",
-    "generate-pdf": "node scripts/extract-patient-pdf.js",
-    "generate-pdf-only": "node scripts/extract-patient-pdf-only.js"
+    "extract:pdf": "node scripts/extract-patient-pdf-fast-v2.js",
+    "extract:pdf:test": "node scripts/extract-patient-pdf-fast-v2.js test-patient-list.txt",
+    "extract:pdf:old": "node scripts/extract-patient-pdf-only.js"
   },
   "keywords": [
     "lhims",
