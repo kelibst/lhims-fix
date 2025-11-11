@@ -44,7 +44,9 @@
       "Bash(node scripts/import-excel-data.js:*)",
       "Bash(chmod:*)",
       "Bash(npm run db:test:*)",
-      "Bash(sqlite3:*)"
+      "Bash(sqlite3:*)",
+      "Bash(npm run extract:pdf:concurrent:test:*)",
+      "Bash(node -c:*)"
     ],
     "deny": [],
     "ask": []

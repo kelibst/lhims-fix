@@ -19,6 +19,8 @@
     "extract:patients:test": "node scripts/extract-patient-json.js test-patient-list.txt",
     "extract:pdf": "node scripts/extract-patient-pdf-fast-v2.js",
     "extract:pdf:test": "node scripts/extract-patient-pdf-fast-v2.js test-patient-list.txt",
+    "extract:pdf:concurrent": "node scripts/extract-patient-pdf-concurrent.js",
+    "extract:pdf:concurrent:test": "node scripts/extract-patient-pdf-concurrent.js test-patient-list.txt 3",
     "extract:pdf:old": "node scripts/extract-patient-pdf-only.js",
     "db:init": "node scripts/init-database.js",
     "db:import": "node scripts/import-excel-data.js",
