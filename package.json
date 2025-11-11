@@ -17,10 +17,19 @@
     "generate:patients": "node scripts/generate-patient-list.js",
     "extract:patients": "node scripts/extract-patient-json.js",
     "extract:patients:test": "node scripts/extract-patient-json.js test-patient-list.txt",
-    "test": "echo \"No tests yet\" && exit 0",
     "extract:pdf": "node scripts/extract-patient-pdf-fast-v2.js",
     "extract:pdf:test": "node scripts/extract-patient-pdf-fast-v2.js test-patient-list.txt",
-    "extract:pdf:old": "node scripts/extract-patient-pdf-only.js"
+    "extract:pdf:old": "node scripts/extract-patient-pdf-only.js",
+    "db:init": "node scripts/init-database.js",
+    "db:import": "node scripts/import-excel-data.js",
+    "db:import:fast": "node scripts/import-excel-data-v2.js",
+    "db:import:test": "node scripts/test-optimized-import.js",
+    "db:biodata": "node scripts/create-bio-data-view.js",
+    "db:test": "node scripts/test-biodata.js",
+    "server": "node server/api.js",
+    "start": "node server/api.js",
+    "dev": "node server/api.js",
+    "test": "node scripts/test-biodata.js"
   },
   "keywords": [
     "lhims",
@@ -32,7 +41,11 @@
   "license": "PRIVATE",
   "dependencies": {
     "playwright": "^1.40.0",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "sqlite3": "^5.1.7",
+    "better-sqlite3": "^9.2.2",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
   },
   "engines": {
     "node": ">=16.0.0"

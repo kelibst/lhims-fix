@@ -75,6 +75,15 @@ function cleanPatientNo(patientNo) {
     return String(patientNo).trim().toUpperCase();
 }
 
+// Normalize gender values
+function normalizeGender(gender) {
+    if (!gender) return null;
+    const g = String(gender).trim().toLowerCase();
+    if (g === 'male' || g === 'm') return 'Male';
+    if (g === 'female' || g === 'f') return 'Female';
+    return null; // Return null for invalid values instead of causing constraint error
+}
+
 // Database connection
 let db;
 
@@ -90,8 +99,16 @@ function connectDatabase() {
             if (err) reject(err);
             else {
                 console.log('✓ Connected to database:', CONFIG.databasePath);
+
                 // Enable foreign keys
-                db.run('PRAGMA foreign_keys = ON', resolve);
+                db.run('PRAGMA foreign_keys = ON');
+
+                // Performance PRAGMAs for faster imports
+                db.run('PRAGMA journal_mode = WAL');          // Write-Ahead Logging (2x faster)
+                db.run('PRAGMA synchronous = NORMAL');        // Faster commits (was FULL)
+                db.run('PRAGMA cache_size = -64000');         // 64MB cache (was ~2MB)
+                db.run('PRAGMA temp_store = MEMORY');         // Temp tables in RAM
+                db.run('PRAGMA page_size = 4096', resolve);   // Optimal page size
             }
         });
     });
@@ -226,7 +243,8 @@ async function importConsultingRoom(filePath, fileName) {
     try {
         const workbook = xlsx.readFile(filePath);
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const rows = xlsx.utils.sheet_to_json(worksheet);
+        // LHIMS Excel files have header at row 5 (0-indexed)
+        const rows = xlsx.utils.sheet_to_json(worksheet, { range: 5 });
 
         console.log(`   Found ${rows.length} rows`);
 
@@ -245,7 +263,7 @@ async function importConsultingRoom(filePath, fileName) {
 
                 // Get or create patient with enhanced demographics from consulting room
                 const patientId = await getOrCreatePatient(patientNo, patientName, {
-                    gender: row['Gender'],
+                    gender: normalizeGender(row['Gender']),
                     nhis: row['NHIA No.'],
                     phone: row['Contact No.'],
                     address: row['Locality']
@@ -266,7 +284,7 @@ async function importConsultingRoom(filePath, fileName) {
                         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                         [
                             patientNo, patientName, scheduleDate, fileName,
-                            'Consulting', i + 2, row['Age'], row['Gender'],
+                            'Consulting', i + 2, row['Age'], normalizeGender(row['Gender']),
                             row['Locality'], row['NHIA Patient'], JSON.stringify(row)
                         ],
                         (err) => err ? reject(err) : resolve()
@@ -363,7 +381,8 @@ async function importIPDMorbidityMortality(filePath, fileName) {
     try {
         const workbook = xlsx.readFile(filePath);
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const rows = xlsx.utils.sheet_to_json(worksheet);
+        // LHIMS Excel files have header at row 5 (0-indexed)
+        const rows = xlsx.utils.sheet_to_json(worksheet, { range: 5 });
 
         console.log(`   Found ${rows.length} rows`);
 
@@ -382,7 +401,7 @@ async function importIPDMorbidityMortality(filePath, fileName) {
                 }
 
                 const patientId = await getOrCreatePatient(patientNo, patientName, {
-                    gender: row['Gender'],
+                    gender: normalizeGender(row['Gender']),
                     address: row['Locality/Address/Residence'],
                     occupation: row['Occupation']
                 });
@@ -402,7 +421,7 @@ async function importIPDMorbidityMortality(filePath, fileName) {
                         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                         [
                             patientNo, patientName, admissionDate, fileName,
-                            'IPD', i + 2, row['Age'], row['Gender'],
+                            'IPD', i + 2, row['Age'], normalizeGender(row['Gender']),
                             row['Locality/Address/Residence'], row['NHIS Status'], JSON.stringify(row)
                         ],
                         (err) => err ? reject(err) : resolve()
@@ -473,7 +492,8 @@ async function importOPDRegister(filePath, fileName) {
     try {
         const workbook = xlsx.readFile(filePath);
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const rows = xlsx.utils.sheet_to_json(worksheet);
+        // LHIMS Excel files have header at row 5 (0-indexed)
+        const rows = xlsx.utils.sheet_to_json(worksheet, { range: 5 });
 
         console.log(`   Found ${rows.length} rows`);
 
@@ -491,7 +511,7 @@ async function importOPDRegister(filePath, fileName) {
                 }
 
                 const patientId = await getOrCreatePatient(patientNo, patientName, {
-                    gender: row['Gender'],
+                    gender: normalizeGender(row['Gender']),
                     address: row['Locality']
                 });
 
@@ -510,7 +530,7 @@ async function importOPDRegister(filePath, fileName) {
                         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                         [
                             patientNo, patientName, scheduleDate, fileName,
-                            'OPD', i + 2, row['Age'], row['Gender'],
+                            'OPD', i + 2, row['Age'], normalizeGender(row['Gender']),
                             row['Locality'], row['NHIS Status'], JSON.stringify(row)
                         ],
                         (err) => err ? reject(err) : resolve()
@@ -554,7 +574,8 @@ async function importMedicalLaboratory(filePath, fileName) {
     try {
         const workbook = xlsx.readFile(filePath);
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const rows = xlsx.utils.sheet_to_json(worksheet);
+        // LHIMS Excel files have header at row 5 (0-indexed)
+        const rows = xlsx.utils.sheet_to_json(worksheet, { range: 5 });
 
         console.log(`   Found ${rows.length} rows`);
 
@@ -572,7 +593,7 @@ async function importMedicalLaboratory(filePath, fileName) {
                 }
 
                 const patientId = await getOrCreatePatient(patientNo, patientName, {
-                    gender: row['Sex']
+                    gender: normalizeGender(row['Sex'])
                 });
 
                 if (!patientId) {
@@ -643,7 +664,8 @@ async function importANCRegister(filePath, fileName) {
     try {
         const workbook = xlsx.readFile(filePath);
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const rows = xlsx.utils.sheet_to_json(worksheet);
+        // LHIMS Excel files have header at row 5 (0-indexed)
+        const rows = xlsx.utils.sheet_to_json(worksheet, { range: 5 });
 
         console.log(`   Found ${rows.length} rows`);
 
@@ -661,7 +683,7 @@ async function importANCRegister(filePath, fileName) {
                 }
 
                 const patientId = await getOrCreatePatient(patientNo, patientName, {
-                    gender: row['Gender'],
+                    gender: normalizeGender(row['Gender']),
                     address: row['Locality']
                 });
 
@@ -680,7 +702,7 @@ async function importANCRegister(filePath, fileName) {
                         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                         [
                             patientNo, patientName, registrationDate, fileName,
-                            'ANC', i + 2, row['Age'], row['Gender'],
+                            'ANC', i + 2, row['Age'], normalizeGender(row['Gender']),
                             row['Locality'], JSON.stringify(row)
                         ],
                         (err) => err ? reject(err) : resolve()

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details - VRH Hohoe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <a href="index.html" class="back-link">← Back to Search</a>
+                <h1 id="patientName">Loading...</h1>
+                <p class="subtitle" id="patientId"></p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div id="loadingIndicator" class="loading">
+                <div class="spinner"></div>
+                <p>Loading patient data...</p>
+            </div>
+
+            <div id="patientContent" class="patient-content hidden">
+                <!-- Bio Data Card -->
+                <section class="card bio-data-card">
+                    <h2 class="card-title">Patient Information</h2>
+                    <div class="bio-data-grid" id="bioDataGrid"></div>
+                </section>
+
+                <!-- OPD Visits Section -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">OPD & Consulting Visits</h2>
+                        <span class="badge" id="opdCount">0</span>
+                    </div>
+                    <div id="opdVisitsList" class="timeline"></div>
+                </section>
+
+                <!-- IPD Admissions Section -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">IPD Admissions</h2>
+                        <span class="badge" id="ipdCount">0</span>
+                    </div>
+                    <div id="ipdAdmissionsList" class="timeline"></div>
+                </section>
+
+                <!-- Diagnoses Section -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Diagnosis History</h2>
+                        <span class="badge" id="diagnosesCount">0</span>
+                    </div>
+                    <div id="diagnosesList" class="diagnoses-list"></div>
+                </section>
+
+                <!-- Medications Section -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Medication History</h2>
+                        <span class="badge" id="medicationsCount">0</span>
+                    </div>
+                    <div id="medicationsList" class="medications-list"></div>
+                </section>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden"></div>
+        </main>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = '/api';
+
+        // Get patient ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const patientNo = urlParams.get('id');
+
+        // DOM Elements
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const patientContent = document.getElementById('patientContent');
+        const errorMessage = document.getElementById('errorMessage');
+        const patientName = document.getElementById('patientName');
+        const patientId = document.getElementById('patientId');
+
+        // Load patient data
+        async function loadPatientData() {
+            if (!patientNo) {
+                showError('No patient ID specified');
+                return;
+            }
+
+            try {
+                // Load patient bio data
+                const patientResponse = await fetch(`${API_BASE}/patient/${patientNo}`);
+                const patientData = await patientResponse.json();
+
+                if (!patientData.success) {
+                    showError(patientData.error || 'Patient not found');
+                    return;
+                }
+
+                const patient = patientData.patient;
+
+                // Update header
+                patientName.textContent = patient.full_name || 'Unknown Patient';
+                patientId.textContent = patient.patient_no;
+
+                // Display bio data
+                displayBioData(patient);
+
+                // Load OPD visits
+                loadOPDVisits();
+
+                // Load IPD admissions
+                loadIPDAdmissions();
+
+                // Load diagnoses
+                loadDiagnoses();
+
+                // Load medications
+                loadMedications();
+
+                // Show content
+                loadingIndicator.classList.add('hidden');
+                patientContent.classList.remove('hidden');
+
+            } catch (error) {
+                showError('Failed to load patient data. Please ensure the server is running.');
+                console.error('Error loading patient:', error);
+            }
+        }
+
+        // Display bio data
+        function displayBioData(patient) {
+            const bioDataGrid = document.getElementById('bioDataGrid');
+
+            const firstVisit = patient.first_visit_date
+                ? new Date(patient.first_visit_date).toLocaleDateString()
+                : 'N/A';
+            const lastVisit = patient.last_visit_date
+                ? new Date(patient.last_visit_date).toLocaleDateString()
+                : 'N/A';
+
+            bioDataGrid.innerHTML = `
+                <div class="bio-data-item">
+                    <span class="bio-label">Full Name:</span>
+                    <span class="bio-value">${escapeHtml(patient.full_name || 'N/A')}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Patient Number:</span>
+                    <span class="bio-value">${escapeHtml(patient.patient_no)}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Gender:</span>
+                    <span class="bio-value">${escapeHtml(patient.gender || 'N/A')}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Age:</span>
+                    <span class="bio-value">${patient.current_age || (patient.age_years ? patient.age_years + ' years' : 'N/A')}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">NHIS Number:</span>
+                    <span class="bio-value">${escapeHtml(patient.nhis_number || 'N/A')}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Phone:</span>
+                    <span class="bio-value">${escapeHtml(patient.mobile_phone || 'N/A')}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Address:</span>
+                    <span class="bio-value">${escapeHtml(patient.address || 'N/A')}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">First Visit:</span>
+                    <span class="bio-value">${firstVisit}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Last Visit:</span>
+                    <span class="bio-value">${lastVisit}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Total Consulting Visits:</span>
+                    <span class="bio-value badge">${patient.total_consulting_visits || 0}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Total OPD Visits:</span>
+                    <span class="bio-value badge">${patient.total_opd_visits || 0}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Total IPD Admissions:</span>
+                    <span class="bio-value badge">${patient.total_ipd_admissions || 0}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Total ANC Visits:</span>
+                    <span class="bio-value badge">${patient.total_anc_visits || 0}</span>
+                </div>
+                <div class="bio-data-item">
+                    <span class="bio-label">Total Lab Orders:</span>
+                    <span class="bio-value badge">${patient.total_lab_orders || 0}</span>
+                </div>
+            `;
+        }
+
+        // Load OPD visits
+        async function loadOPDVisits() {
+            try {
+                const response = await fetch(`${API_BASE}/patient/${patientNo}/opd-visits`);
+                const data = await response.json();
+
+                const opdCount = document.getElementById('opdCount');
+                const opdVisitsList = document.getElementById('opdVisitsList');
+
+                opdCount.textContent = data.count;
+
+                if (data.count === 0) {
+                    opdVisitsList.innerHTML = '<p class="empty-message">No OPD visits recorded</p>';
+                    return;
+                }
+
+                opdVisitsList.innerHTML = data.visits.map(visit => `
+                    <div class="timeline-item">
+                        <div class="timeline-date">${new Date(visit.visit_date).toLocaleDateString()}</div>
+                        <div class="timeline-content">
+                            <h4>${visit.source_category} Visit</h4>
+                            ${visit.diagnoses ? `<p class="diagnosis"><strong>Diagnoses:</strong> ${escapeHtml(visit.diagnoses)}</p>` : ''}
+                            ${visit.icd10_codes ? `<p class="icd10"><strong>ICD-10:</strong> ${escapeHtml(visit.icd10_codes)}</p>` : ''}
+                            <p class="source-file"><em>Source: ${escapeHtml(visit.source_file)}</em></p>
+                            <button class="btn-secondary" onclick="alert('PDF generation feature coming soon!')">View Full PDF</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading OPD visits:', error);
+            }
+        }
+
+        // Load IPD admissions
+        async function loadIPDAdmissions() {
+            try {
+                const response = await fetch(`${API_BASE}/patient/${patientNo}/ipd-admissions`);
+                const data = await response.json();
+
+                const ipdCount = document.getElementById('ipdCount');
+                const ipdAdmissionsList = document.getElementById('ipdAdmissionsList');
+
+                ipdCount.textContent = data.count;
+
+                if (data.count === 0) {
+                    ipdAdmissionsList.innerHTML = '<p class="empty-message">No IPD admissions recorded</p>';
+                    return;
+                }
+
+                ipdAdmissionsList.innerHTML = data.admissions.map(admission => `
+                    <div class="timeline-item">
+                        <div class="timeline-date">${new Date(admission.admission_date).toLocaleDateString()}</div>
+                        <div class="timeline-content">
+                            <h4>IPD Admission</h4>
+                            ${admission.diagnoses ? `<p class="diagnosis"><strong>Diagnoses:</strong> ${escapeHtml(admission.diagnoses)}</p>` : ''}
+                            ${admission.icd10_codes ? `<p class="icd10"><strong>ICD-10:</strong> ${escapeHtml(admission.icd10_codes)}</p>` : ''}
+                            <p class="source-file"><em>Source: ${escapeHtml(admission.source_file)}</em></p>
+                            <button class="btn-secondary" onclick="alert('PDF generation feature coming soon!')">View Full PDF</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading IPD admissions:', error);
+            }
+        }
+
+        // Load diagnoses
+        async function loadDiagnoses() {
+            try {
+                const response = await fetch(`${API_BASE}/patient/${patientNo}/diagnoses`);
+                const data = await response.json();
+
+                const diagnosesCount = document.getElementById('diagnosesCount');
+                const diagnosesList = document.getElementById('diagnosesList');
+
+                diagnosesCount.textContent = data.count;
+
+                if (data.count === 0) {
+                    diagnosesList.innerHTML = '<p class="empty-message">No diagnoses recorded</p>';
+                    return;
+                }
+
+                diagnosesList.innerHTML = data.diagnoses.map(diagnosis => `
+                    <div class="diagnosis-item">
+                        <div class="diagnosis-header">
+                            <span class="diagnosis-date">${new Date(diagnosis.visit_date).toLocaleDateString()}</span>
+                            ${diagnosis.diagnosis_type ? `<span class="badge-small">${escapeHtml(diagnosis.diagnosis_type)}</span>` : ''}
+                            ${diagnosis.case_type ? `<span class="badge-small">${escapeHtml(diagnosis.case_type)}</span>` : ''}
+                        </div>
+                        <p class="diagnosis-text">${escapeHtml(diagnosis.diagnosis_text || 'No description')}</p>
+                        ${diagnosis.icd10_code ? `<p class="icd10-code">ICD-10: ${escapeHtml(diagnosis.icd10_code)}</p>` : ''}
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading diagnoses:', error);
+            }
+        }
+
+        // Load medications
+        async function loadMedications() {
+            try {
+                const response = await fetch(`${API_BASE}/patient/${patientNo}/medications`);
+                const data = await response.json();
+
+                const medicationsCount = document.getElementById('medicationsCount');
+                const medicationsList = document.getElementById('medicationsList');
+
+                medicationsCount.textContent = data.count;
+
+                if (data.count === 0) {
+                    medicationsList.innerHTML = '<p class="empty-message">No medications recorded</p>';
+                    return;
+                }
+
+                medicationsList.innerHTML = data.medications.map(medication => `
+                    <div class="medication-item">
+                        <div class="medication-header">
+                            <span class="medication-date">${new Date(medication.visit_date).toLocaleDateString()}</span>
+                            ${medication.medication_type ? `<span class="badge-small">${escapeHtml(medication.medication_type)}</span>` : ''}
+                        </div>
+                        <p class="medication-text">${escapeHtml(medication.medication_text || 'No details')}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading medications:', error);
+            }
+        }
+
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+            loadingIndicator.classList.add('hidden');
+            patientContent.classList.add('hidden');
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load data on page load
+        loadPatientData();
+    </script>
+</body>
+</html>

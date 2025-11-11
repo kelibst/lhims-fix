@@ -39,7 +39,12 @@
       "Bash(tee:*)",
       "Bash(test:*)",
       "Bash(node analyze-pdf-requests.js:*)",
-      "Bash(node check-ipd-pdf-success.js:*)"
+      "Bash(node check-ipd-pdf-success.js:*)",
+      "Bash(node scripts/init-database.js:*)",
+      "Bash(node scripts/import-excel-data.js:*)",
+      "Bash(chmod:*)",
+      "Bash(npm run db:test:*)",
+      "Bash(sqlite3:*)"
     ],
     "deny": [],
     "ask": []

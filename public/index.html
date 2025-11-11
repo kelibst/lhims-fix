@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Search - VRH Hohoe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>Patient Search System</h1>
+                <p class="subtitle">Volta Regional Hospital, Hohoe</p>
+            </div>
+            <div class="stats-summary" id="statsSummary">
+                <div class="stat-item">
+                    <span class="stat-label">Total Patients:</span>
+                    <span class="stat-value" id="totalPatients">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Visits:</span>
+                    <span class="stat-value" id="totalVisits">-</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="search-container">
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Search by Patient ID, Name, NHIS Number, or Phone..."
+                        autocomplete="off"
+                    />
+                    <button id="searchBtn" class="search-button">
+                        Search
+                    </button>
+                </div>
+
+                <div class="search-help">
+                    <p>Examples: VR-A01-AAA0001, John Doe, 70796930, 0540605847</p>
+                </div>
+            </div>
+
+            <div id="searchResults" class="search-results hidden">
+                <div class="results-header">
+                    <h2>Search Results</h2>
+                    <span id="resultsCount" class="results-count"></span>
+                </div>
+                <div id="resultsList" class="results-list"></div>
+            </div>
+
+            <div id="loadingIndicator" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Searching...</p>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden"></div>
+        </main>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = '/api';
+
+        // DOM Elements
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const searchResults = document.getElementById('searchResults');
+        const resultsList = document.getElementById('resultsList');
+        const resultsCount = document.getElementById('resultsCount');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Stats elements
+        const totalPatients = document.getElementById('totalPatients');
+        const totalVisits = document.getElementById('totalVisits');
+
+        // Load stats on page load
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE}/stats`);
+                const data = await response.json();
+
+                if (data.success) {
+                    totalPatients.textContent = data.stats.totalPatients.toLocaleString();
+                    totalVisits.textContent = data.stats.totalVisits.toLocaleString();
+                }
+            } catch (error) {
+                console.error('Failed to load stats:', error);
+            }
+        }
+
+        // Search function
+        async function performSearch() {
+            const query = searchInput.value.trim();
+
+            if (query.length < 2) {
+                showError('Please enter at least 2 characters to search');
+                return;
+            }
+
+            // Show loading
+            hideError();
+            searchResults.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
+
+            try {
+                const response = await fetch(`${API_BASE}/search?q=${encodeURIComponent(query)}&limit=50`);
+                const data = await response.json();
+
+                loadingIndicator.classList.add('hidden');
+
+                if (!data.success) {
+                    showError(data.error || 'Search failed');
+                    return;
+                }
+
+                displayResults(data.results, data.count);
+            } catch (error) {
+                loadingIndicator.classList.add('hidden');
+                showError('Failed to connect to server. Please ensure the server is running.');
+                console.error('Search error:', error);
+            }
+        }
+
+        // Display search results
+        function displayResults(results, count) {
+            if (count === 0) {
+                showError('No patients found matching your search');
+                return;
+            }
+
+            resultsCount.textContent = `${count} patient${count !== 1 ? 's' : ''} found`;
+            resultsList.innerHTML = '';
+
+            results.forEach(patient => {
+                const card = createPatientCard(patient);
+                resultsList.appendChild(card);
+            });
+
+            searchResults.classList.remove('hidden');
+        }
+
+        // Create patient card HTML
+        function createPatientCard(patient) {
+            const card = document.createElement('div');
+            card.className = 'patient-card';
+            card.onclick = () => viewPatient(patient.patient_no);
+
+            const lastVisit = patient.last_visit_date
+                ? new Date(patient.last_visit_date).toLocaleDateString()
+                : 'No visits';
+
+            card.innerHTML = `
+                <div class="patient-card-header">
+                    <h3 class="patient-name">${escapeHtml(patient.full_name || 'Unknown')}</h3>
+                    <span class="patient-id">${escapeHtml(patient.patient_no)}</span>
+                </div>
+                <div class="patient-card-body">
+                    <div class="patient-info">
+                        <span class="info-label">Gender:</span>
+                        <span>${escapeHtml(patient.gender || 'N/A')}</span>
+                    </div>
+                    <div class="patient-info">
+                        <span class="info-label">Age:</span>
+                        <span>${patient.current_age || (patient.age_years ? patient.age_years + ' years' : 'N/A')}</span>
+                    </div>
+                    <div class="patient-info">
+                        <span class="info-label">NHIS:</span>
+                        <span>${escapeHtml(patient.nhis_number || 'N/A')}</span>
+                    </div>
+                    <div class="patient-info">
+                        <span class="info-label">Phone:</span>
+                        <span>${escapeHtml(patient.mobile_phone || 'N/A')}</span>
+                    </div>
+                    <div class="patient-info">
+                        <span class="info-label">Location:</span>
+                        <span>${escapeHtml(patient.address || 'N/A')}</span>
+                    </div>
+                    <div class="patient-info">
+                        <span class="info-label">Total Visits:</span>
+                        <span class="badge">${patient.visit_count || 0}</span>
+                    </div>
+                    <div class="patient-info">
+                        <span class="info-label">Last Visit:</span>
+                        <span>${lastVisit}</span>
+                    </div>
+                </div>
+                <div class="patient-card-footer">
+                    <button class="btn-view">View Full Record →</button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Navigate to patient detail page
+        function viewPatient(patientNo) {
+            window.location.href = `patient.html?id=${encodeURIComponent(patientNo)}`;
+        }
+
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+            searchResults.classList.add('hidden');
+        }
+
+        // Hide error message
+        function hideError() {
+            errorMessage.classList.add('hidden');
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Event listeners
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Auto-focus search input
+        searchInput.focus();
+
+        // Load initial stats
+        loadStats();
+    </script>
+</body>
+</html>
