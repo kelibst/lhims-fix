@@ -1,18 +1,18 @@
 # LHIMS Data Extraction - Project Context
 
-**Last Updated**: 2025-11-10
-**Project**: LHIMS Data Extraction System
+**Last Updated**: 2025-11-12
+**Project**: LHIMS Replacement System Development
 **Facility**: Volta Regional Hospital, Hohoe, Ghana
 
 ---
 
 ## Project Status
 
-- **Current Phase**: PDF Extraction Testing
-- **Total Patients Discovered**: 70,068
-- **Patients Extracted (JSON)**: 7,164 (10.2%)
-- **Patients Extracted (PDF)**: Testing pending
-- **Next Goal**: Test PDF extraction on sample patients, then run full extraction
+- **Current Phase**: Building LHIMS Replacement System
+- **Total Patients Discovered**: 70,079
+- **Patients Extracted (JSON)**: 70,079 (100% - Successfully completed)
+- **Patients Extracted (PDF)**: OPD and IPD PDFs extracted
+- **Current Goal**: Build modern replacement system for LHIMS with familiar UI
 
 ---
 
@@ -246,10 +246,57 @@ grep -c "^[A-Z]" master-patient-list.txt
 
 ---
 
+## New Phase: LHIMS Replacement System Development
+
+### Overview
+Building a complete hospital information system to replace LHIMS, maintaining familiar UI while improving performance and adding modern features.
+
+### Technology Stack Chosen
+- **Frontend**: Next.js 15 (App Router) with TypeScript
+- **Database**: PostgreSQL (primary) + SQLite (offline backup)
+- **Cache**: Redis for session management
+- **UI**: shadcn/ui + Tailwind CSS (customized to match LHIMS)
+- **Authentication**: NextAuth.js with RBAC
+- **API**: tRPC for type-safe endpoints
+
+### Documentation Phase (Current)
+- **Location**: `plan/lhims-documentation/`
+- **Scripts Created**:
+  - `scripts/document-lhims-pages.js` - Automated page documentation
+  - `scripts/analyze-lhims-ui.js` - UI pattern extraction
+- **Templates**:
+  - `00-INDEX.md` - Master navigation map
+  - `PAGE-TEMPLATE.md` - Documentation template
+
+### Development Timeline
+- **Phase 1**: LHIMS Documentation (Weeks 1-2)
+- **Phase 2**: Architecture Setup (Week 3)
+- **Phase 3**: Data Migration (Weeks 4-5)
+- **Phase 4**: Core Development (Weeks 6-16)
+- **Phase 5**: Deployment (Weeks 17-18)
+- **Phase 6**: Training & Rollout (Weeks 19-20)
+
+### Module Priority Order
+1. Core Patient Management (search, profile, timeline)
+2. OPD Module (consultation, prescriptions)
+3. IPD Module (admission, discharge)
+4. Ancillary Services (pharmacy, lab)
+5. Reports & Analytics
+6. Administration
+
+### Infrastructure Requirements
+- Server: 8-core CPU, 16GB RAM, 1TB SSD
+- Database: PostgreSQL 16
+- Cache: Redis
+- Process Manager: PM2
+- Proxy: Nginx
+- Estimated Cost: ~$3,000 USD first year
+
 ## Next Steps
 
-1. Test PDF extraction with sample patients (5-10 patients)
-2. Validate PDF quality and completeness
-3. Investigate JSON extraction timeout issues
-4. Run full PDF extraction (8-12 days)
-5. Build offline patient lookup system
+1. Run LHIMS documentation scripts on hospital network
+2. Capture all LHIMS pages and workflows
+3. Extract UI patterns and color schemes
+4. Set up Next.js project with chosen stack
+5. Begin data migration from extracted data
+6. Develop MVP modules (patient search + OPD)

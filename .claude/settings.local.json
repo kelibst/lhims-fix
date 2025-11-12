@@ -46,7 +46,13 @@
       "Bash(npm run db:test:*)",
       "Bash(sqlite3:*)",
       "Bash(npm run extract:pdf:concurrent:test:*)",
-      "Bash(node -c:*)"
+      "Bash(node -c:*)",
+      "Bash(npx '@playwright/mcp@latest')",
+      "Bash(npm install:*)",
+      "Bash(findstr:*)",
+      "Bash(node_modules\\.bin\\playwright install chrome)",
+      "Bash(node node_modules/playwright/cli.js install:*)",
+      "Bash(where:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,79 @@
+{
+  "colors": {
+    "textColors": [
+      "rgb(0, 0, 0)"
+    ],
+    "backgroundColors": [],
+    "borderColors": [
+      "rgb(0, 0, 0)"
+    ]
+  },
+  "typography": {
+    "fontFamilies": [
+      "\"Times New Roman\""
+    ],
+    "fontSizes": [
+      "16px"
+    ],
+    "lineHeights": [
+      "normal"
+    ],
+    "headingStyles": {}
+  },
+  "layout": {
+    "hasHeader": false,
+    "hasSidebar": false,
+    "hasMainContent": false,
+    "hasFooter": false,
+    "containerLayout": {
+      "display": "block",
+      "gridTemplateColumns": "none",
+      "flexDirection": "row"
+    }
+  },
+  "forms": [],
+  "buttons": {},
+  "tables": [],
+  "navigation": [],
+  "icons": {
+    "iconLibraries": {
+      "fontAwesome": false,
+      "materialIcons": false,
+      "customIcons": false
+    },
+    "iconCount": 0,
+    "imageCount": 0,
+    "logos": []
+  },
+  "responsiveness": {
+    "mobile": {
+      "bodyWidth": 375,
+      "hasHorizontalScroll": false,
+      "contentWidth": null,
+      "sidebarVisible": false,
+      "fontSize": "16px"
+    },
+    "tablet": {
+      "bodyWidth": 768,
+      "hasHorizontalScroll": false,
+      "contentWidth": null,
+      "sidebarVisible": false,
+      "fontSize": "16px"
+    },
+    "desktop": {
+      "bodyWidth": 1366,
+      "hasHorizontalScroll": false,
+      "contentWidth": null,
+      "sidebarVisible": false,
+      "fontSize": "16px"
+    },
+    "wide": {
+      "bodyWidth": 1920,
+      "hasHorizontalScroll": false,
+      "contentWidth": null,
+      "sidebarVisible": false,
+      "fontSize": "16px"
+    }
+  },
+  "cssFramework": "Bootstrap"
+}

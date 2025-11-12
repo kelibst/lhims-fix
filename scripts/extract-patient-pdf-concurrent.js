@@ -534,89 +534,93 @@ async function downloadOPDPDF(page, patientNo, patientId, consultations, patient
 
 async function downloadAllIPDPDFs(page, patientNo, patientId, admissions, patientDir) {
   let successCount = 0;
+  const errors = [];
 
-  // Download all IPD PDFs in parallel (limit to 5 at once)
-  const ipdQueue = new SimpleQueue(5);
-  const tasks = admissions.map(admission => {
-    return ipdQueue.add(async () => {
-      const admitId = admission.admit_id || admission.iAdmitID || admission.admission_id;
-      if (!admitId) return null;
+  // Process admissions sequentially (simpler and more reliable)
+  for (const admission of admissions) {
+    const admitId = admission.admit_id || admission.iAdmitID || admission.admission_id;
+    if (!admitId) continue;
 
-      const pdfPath = path.join(patientDir, `${patientNo}-IPD-ADMISSION-${admitId}.pdf`);
-      if (fs.existsSync(pdfPath)) {
-        successCount++;
-        return admitId;
+    const pdfPath = path.join(patientDir, `${patientNo}-IPD-ADMISSION-${admitId}.pdf`);
+    if (fs.existsSync(pdfPath)) {
+      successCount++;
+      continue;
+    }
+
+    try {
+      const bedId = admission.bed_id || '';
+      const visitNo = admission.visit_no || `ADMT-${admitId}`;
+
+      let admitDate = admission.admit_date || admission.dAdmitDate || '';
+      if (admitDate && admitDate.includes('-')) {
+        const parts = admitDate.split('-');
+        if (parts.length === 3 && parts[0].length === 4) {
+          admitDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+        }
       }
 
-      try {
-        const bedId = admission.bed_id || '';
-        const visitNo = admission.visit_no || `ADMT-${admitId}`;
-
-        let admitDate = admission.admit_date || admission.dAdmitDate || '';
-        if (admitDate && admitDate.includes('-')) {
-          const parts = admitDate.split('-');
-          if (parts.length === 3 && parts[0].length === 4) {
-            admitDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-          }
-        }
-
-        let admitTime = '';
-        const bedFromDate = admission.bed_from_date || admission.dBedFromDate || '';
-        if (bedFromDate && bedFromDate.includes(' ')) {
-          admitTime = bedFromDate.split(' ')[1] || '';
-        }
-
-        const pdfBuffer = await page.evaluate(async (data) => {
-          const { patientId, admitId, bedId, visitNo, admitDate, admitTime } = data;
-          const formData = new URLSearchParams();
-          formData.append('idExportAdmissionSummaryAdmitID', admitId);
-          formData.append('idExportAdmissionSummaryPatientID', patientId);
-          formData.append('idExportAdmissionSummaryBedID', bedId);
-          formData.append('idExportAdmissionSummaryVisitNo', visitNo);
-          formData.append('idExportAdmissionSummaryAdmitDate', admitDate);
-          formData.append('idExportAdmissionSummaryAdmitTime', admitTime);
-          formData.append('idExportAdmissionSummaryTreatmentDetails', '1');
-          formData.append('idExportAdmissionSummaryRecommendation', '6');
-          formData.append('idExportAdmissionSummaryPrescription', '3');
-          formData.append('idExportAdmissionSummaryVitals', '4');
-          formData.append('idExportAdmissionSummaryDoctorNurseNotes', '7');
-          formData.append('idExportAdmissionSummaryChiefComplaints', '10');
-          formData.append('idExportAdmissionSummaryAdditionalServices', '11');
-          formData.append('idExportAdmissionSummaryDiagnosis', '12');
-          formData.append('idExportAdmissionSummaryOperations', '13');
-          formData.append('idExportAdmissionSummaryFluidMonitoring', '14');
-          formData.append('idExportAdmissionSummaryDiet', '15');
-          formData.append('idExportAdmissionSummaryClinicalNotes', '16');
-
-          const res = await fetch('http://10.10.0.59/lhims_182/exportAdmissionSummaryPDF.php', {
-            method: 'POST',
-            body: formData
-          });
-
-          const blob = await res.blob();
-          const arrayBuffer = await blob.arrayBuffer();
-          return Array.from(new Uint8Array(arrayBuffer));
-        }, { patientId, admitId, bedId, visitNo, admitDate, admitTime });
-
-        const pdfBufferNode = Buffer.from(pdfBuffer);
-        const first4 = pdfBufferNode.slice(0, 4).toString();
-        if (first4 !== '%PDF') return null;
-
-        const pdfContent = pdfBufferNode.toString();
-        if (pdfContent.includes('/Count 0')) return null;
-
-        fs.writeFileSync(pdfPath, pdfBufferNode);
-        successCount++;
-        return admitId;
-
-      } catch (error) {
-        return null;
+      let admitTime = '';
+      const bedFromDate = admission.bed_from_date || admission.dBedFromDate || '';
+      if (bedFromDate && bedFromDate.includes(' ')) {
+        admitTime = bedFromDate.split(' ')[1] || '';
       }
-    });
-  });
 
-  await Promise.all(tasks);
-  await ipdQueue.onIdle();
+      const pdfBuffer = await page.evaluate(async (data) => {
+        const { patientId, admitId, bedId, visitNo, admitDate, admitTime } = data;
+        const formData = new URLSearchParams();
+        formData.append('idExportAdmissionSummaryAdmitID', admitId);
+        formData.append('idExportAdmissionSummaryPatientID', patientId);
+        formData.append('idExportAdmissionSummaryBedID', bedId);
+        formData.append('idExportAdmissionSummaryVisitNo', visitNo);
+        formData.append('idExportAdmissionSummaryAdmitDate', admitDate);
+        formData.append('idExportAdmissionSummaryAdmitTime', admitTime);
+        formData.append('idExportAdmissionSummaryTreatmentDetails', '1');
+        formData.append('idExportAdmissionSummaryRecommendation', '6');
+        formData.append('idExportAdmissionSummaryPrescription', '3');
+        formData.append('idExportAdmissionSummaryVitals', '4');
+        formData.append('idExportAdmissionSummaryDoctorNurseNotes', '7');
+        formData.append('idExportAdmissionSummaryChiefComplaints', '10');
+        formData.append('idExportAdmissionSummaryAdditionalServices', '11');
+        formData.append('idExportAdmissionSummaryDiagnosis', '12');
+        formData.append('idExportAdmissionSummaryOperations', '13');
+        formData.append('idExportAdmissionSummaryFluidMonitoring', '14');
+        formData.append('idExportAdmissionSummaryDiet', '15');
+        formData.append('idExportAdmissionSummaryClinicalNotes', '16');
+
+        const res = await fetch('http://10.10.0.59/lhims_182/exportAdmissionSummaryPDF.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const blob = await res.blob();
+        const arrayBuffer = await blob.arrayBuffer();
+        return Array.from(new Uint8Array(arrayBuffer));
+      }, { patientId, admitId, bedId, visitNo, admitDate, admitTime });
+
+      const pdfBufferNode = Buffer.from(pdfBuffer);
+      const first4 = pdfBufferNode.slice(0, 4).toString();
+      if (first4 !== '%PDF') {
+        errors.push(`Admission ${admitId}: Invalid PDF`);
+        continue;
+      }
+
+      const pdfContent = pdfBufferNode.toString();
+      if (pdfContent.includes('/Count 0')) {
+        errors.push(`Admission ${admitId}: Empty PDF`);
+        continue;
+      }
+
+      fs.writeFileSync(pdfPath, pdfBufferNode);
+      successCount++;
+
+    } catch (error) {
+      errors.push(`Admission ${admitId}: ${error.message}`);
+    }
+  }
+
+  if (successCount === 0 && errors.length > 0) {
+    throw new Error(`All IPD downloads failed: ${errors.join(', ')}`);
+  }
 
   return successCount;
 }
