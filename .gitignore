@@ -90,3 +90,4 @@ scripts/extract-patient-json.js
 
 data/patient-json-OLD-BUGGY-BACKUP
 samplefiles/
+data/database/

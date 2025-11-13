@@ -1,0 +1,795 @@
+// VRH Hospital Information System - Prisma Schema
+// Based on Next.js Starter + Hospital Requirements
+// Database: PostgreSQL
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ============================================================================
+// USER MANAGEMENT & AUTHENTICATION
+// ============================================================================
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String?  @unique
+  password  String   // Hashed with bcrypt
+  role      UserRole @default(STAFF)
+
+  // Profile Information
+  firstName     String?
+  lastName      String?
+  fullName      String?
+  phoneNumber   String?
+  department    String?       // e.g., "Emergency", "Pediatrics", "Surgery"
+  position      String?       // e.g., "Senior Consultant", "Staff Nurse"
+  licenseNumber String?       // Professional license/registration number
+
+  // Status
+  isActive      Boolean  @default(true)
+  emailVerified Boolean  @default(false)
+  lastLogin     DateTime?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  auditLogs     AuditLog[]
+  createdPatients Patient[] @relation("CreatedBy")
+
+  @@index([email])
+  @@index([username])
+  @@index([role])
+  @@map("users")
+}
+
+// Comprehensive Healthcare Roles based on WHO HIS standards
+enum UserRole {
+  // System Administration
+  SUPER_ADMIN       // Full system access, user management, system configuration
+  SYSTEM_ADMIN      // System maintenance, backup, technical support
+
+  // Clinical Roles
+  PHYSICIAN         // Doctors - full clinical access, prescribing, diagnosis
+  SPECIALIST        // Consultants - specialized care, referrals
+  SURGEON           // Surgical department access
+  ANESTHETIST       // Anesthesia records, surgical support
+
+  // Nursing Roles
+  NURSE             // General nursing - patient care, vital signs, medication admin
+  NURSE_MANAGER     // Ward management, staff scheduling
+  MIDWIFE           // Maternity/ANC services
+
+  // Allied Health
+  PHARMACIST        // Pharmacy - dispensing, stock management
+  PHARMACY_TECH     // Pharmacy assistant - stock, dispensing support
+  LAB_SCIENTIST     // Laboratory - test processing, results entry
+  LAB_TECHNICIAN    // Lab assistant - sample collection, basic tests
+  RADIOGRAPHER      // Radiology/imaging services
+  PHYSIOTHERAPIST   // Physiotherapy services
+
+  // Administrative
+  MEDICAL_RECORDS   // Health information management, records access
+  RECEPTIONIST      // Patient registration, appointments, basic data entry
+  BILLING_CLERK     // Financial records, billing, NHIS claims
+  RECORDS_CLERK     // Filing, document management
+
+  // Support
+  STAFF             // General staff - limited access
+  IT_SUPPORT        // Technical support - system access only
+
+  // Emergency
+  EMERGENCY_ACCESS  // Break-glass access for emergencies
+
+  @@map("user_roles")
+}
+
+// ============================================================================
+// PATIENT MANAGEMENT
+// ============================================================================
+
+model Patient {
+  id              String    @id @default(cuid())
+  patientNo       String    @unique  // Format: VR-A01-AAA0001
+
+  // Demographics
+  firstName       String
+  middleName      String?
+  lastName        String
+  fullName        String
+  dateOfBirth     DateTime?
+  gender          Gender?
+
+  // Contact Information
+  mobilePhone     String?
+  alternatePhone  String?
+  email           String?
+  address         String?
+  locality        String?   // Village/Town
+  region          String?   // Volta Region
+  ghanaPostGPS    String?   // Ghana Post GPS address
+
+  // Identification
+  nhisNumber      String?   // National Health Insurance Scheme
+  nationalIdType  String?   // Ghana Card, Voter ID, Passport, etc.
+  nationalIdNumber String?
+
+  // Emergency Contact
+  nextOfKinName   String?
+  nextOfKinPhone  String?
+  nextOfKinRelation String?
+
+  // Clinical Information
+  bloodGroup      String?   // A+, B+, O-, etc.
+  allergies       String?   // Text description
+  chronicConditions String? // Text description
+
+  // System Metadata
+  importedFromLhims Boolean  @default(true)
+  lhimsImportedAt   DateTime @default(now())
+  createdById       String?
+  createdBy         User?    @relation("CreatedBy", fields: [createdById], references: [id])
+
+  // Status
+  isActive        Boolean  @default(true)
+  isDeceased      Boolean  @default(false)
+  deceasedDate    DateTime?
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  visits          Visit[]
+  diagnoses       Diagnosis[]
+  medications     Medication[]
+  labOrders       LabOrder[]
+  labResults      LabResult[]
+  vitalSigns      VitalSigns[]
+  prescriptions   Prescription[]
+  admissions      Admission[]
+  appointments    Appointment[]
+  pdfs            PatientPdf[]
+
+  @@index([patientNo])
+  @@index([nhisNumber])
+  @@index([firstName, lastName])
+  @@index([mobilePhone])
+  @@index([isActive])
+  @@map("patients")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  UNKNOWN
+
+  @@map("gender")
+}
+
+// ============================================================================
+// CLINICAL VISITS
+// ============================================================================
+
+model Visit {
+  id              String      @id @default(cuid())
+  patientId       String
+  patient         Patient     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  // Visit Information
+  visitDate       DateTime
+  visitType       VisitType
+  visitNumber     String?     // Hospital-generated visit number
+  department      String?     // OPD, Emergency, Surgical, etc.
+
+  // Clinical Data
+  chiefComplaint  String?     // Patient's main complaint
+  presentingComplaint String? // Detailed complaint
+  clinicalNotes   String?     // Doctor's notes
+  physicalExam    String?     // Examination findings
+
+  // From Excel Import (Legacy LHIMS data)
+  sourceFile      String?
+  sourceCategory  String?     // OPD, IPD, Consulting, ANC, Lab
+  sourceRowNumber Int?
+  age             String?     // As recorded in Excel
+  locality        String?
+  nhisStatus      String?
+  rawData         Json?       // Full Excel row as JSON
+
+  // Status
+  status          VisitStatus @default(IN_PROGRESS)
+
+  // Timestamps
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  // Relations
+  diagnoses       Diagnosis[]
+  prescriptions   Prescription[]
+  vitalSigns      VitalSigns[]
+  labOrders       LabOrder[]
+
+  @@index([patientId])
+  @@index([visitDate])
+  @@index([visitType])
+  @@index([status])
+  @@map("visits")
+}
+
+enum VisitType {
+  OPD           // Outpatient Department
+  IPD           // Inpatient Department
+  EMERGENCY     // Emergency Department
+  ANC           // Antenatal Care
+  CONSULTING    // Consulting Room
+  SPECIALIST    // Specialist Clinic
+  DENTAL        // Dental Clinic
+  EYE           // Eye Clinic
+  PHYSIOTHERAPY // Physiotherapy
+
+  @@map("visit_type")
+}
+
+enum VisitStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+
+  @@map("visit_status")
+}
+
+// ============================================================================
+// VITAL SIGNS
+// ============================================================================
+
+model VitalSigns {
+  id              String   @id @default(cuid())
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  visitId         String?
+  visit           Visit?   @relation(fields: [visitId], references: [id])
+
+  // Vital Signs Measurements
+  temperature     Float?   // Celsius
+  bloodPressureSystolic   Int?     // mmHg
+  bloodPressureDiastolic  Int?     // mmHg
+  pulseRate       Int?     // beats per minute
+  respiratoryRate Int?     // breaths per minute
+  oxygenSaturation Float?  // SpO2 percentage
+  weight          Float?   // kg
+  height          Float?   // cm
+  bmi             Float?   // Calculated
+
+  // Pain Assessment
+  painScore       Int?     // 0-10 scale
+
+  // Notes
+  notes           String?
+
+  // Recorded By
+  recordedBy      String?  // User who recorded
+  recordedAt      DateTime @default(now())
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+
+  @@index([patientId])
+  @@index([visitId])
+  @@index([recordedAt])
+  @@map("vital_signs")
+}
+
+// ============================================================================
+// DIAGNOSES
+// ============================================================================
+
+model Diagnosis {
+  id              String   @id @default(cuid())
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  visitId         String?
+  visit           Visit?   @relation(fields: [visitId], references: [id])
+
+  // Diagnosis Information
+  visitDate       DateTime
+  diagnosisType   DiagnosisType
+  caseType        CaseType?
+  diagnosisText   String
+  icd10Code       String?  // ICD-10 classification code
+
+  // From Excel Import
+  sourceFile      String?
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([patientId])
+  @@index([visitId])
+  @@index([visitDate])
+  @@index([icd10Code])
+  @@map("diagnoses")
+}
+
+enum DiagnosisType {
+  PRINCIPAL     // Primary diagnosis
+  ADDITIONAL    // Secondary/co-morbid diagnosis
+  PROVISIONAL   // Working diagnosis
+  DIFFERENTIAL  // Alternative diagnosis
+  FINAL         // Confirmed diagnosis
+
+  @@map("diagnosis_type")
+}
+
+enum CaseType {
+  NEW           // New case
+  OLD           // Follow-up/continuing case
+  RECURRING     // Recurring condition
+
+  @@map("case_type")
+}
+
+// ============================================================================
+// MEDICATIONS & PRESCRIPTIONS
+// ============================================================================
+
+model Medication {
+  id              String   @id @default(cuid())
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  // Medication Information
+  visitDate       DateTime
+  medicationType  MedicationType
+  medicationText  String   // Free text from Excel
+
+  // From Excel Import
+  sourceFile      String?
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+
+  @@index([patientId])
+  @@index([visitDate])
+  @@map("medications")
+}
+
+enum MedicationType {
+  PRESCRIBED    // Medications prescribed
+  DISPENSED     // Medications actually given
+  ADMINISTERED  // Medications given during visit/admission
+
+  @@map("medication_type")
+}
+
+model Prescription {
+  id              String   @id @default(cuid())
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  visitId         String?
+  visit           Visit?   @relation(fields: [visitId], references: [id])
+
+  // Prescription Details
+  prescriptionNumber String? @unique
+  prescriptionDate   DateTime @default(now())
+
+  // Drug Information
+  drugName        String
+  dosage          String   // e.g., "500mg"
+  route           String?  // Oral, IV, IM, etc.
+  frequency       String   // e.g., "3 times daily"
+  duration        String?  // e.g., "7 days"
+  quantity        String?  // Total quantity to dispense
+  instructions    String?  // Special instructions
+
+  // Dispensing
+  dispensed       Boolean  @default(false)
+  dispensedDate   DateTime?
+  dispensedBy     String?  // User ID of pharmacist
+
+  // Status
+  status          PrescriptionStatus @default(PENDING)
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([patientId])
+  @@index([visitId])
+  @@index([status])
+  @@index([prescriptionDate])
+  @@map("prescriptions")
+}
+
+enum PrescriptionStatus {
+  PENDING       // Awaiting dispensing
+  DISPENSED     // Dispensed to patient
+  CANCELLED     // Prescription cancelled
+  EXPIRED       // Prescription expired
+
+  @@map("prescription_status")
+}
+
+// ============================================================================
+// LABORATORY
+// ============================================================================
+
+model LabOrder {
+  id                String   @id @default(cuid())
+  patientId         String
+  patient           Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  visitId           String?
+  visit             Visit?   @relation(fields: [visitId], references: [id])
+
+  // Order Information
+  orderNumber       String?  @unique
+  visitNo           String?
+  scheduleDate      DateTime
+  testRequested     String?
+  testCategory      String?  // Hematology, Chemistry, Microbiology, etc.
+  priority          Priority @default(ROUTINE)
+
+  // Sample Information
+  specimenType      String?  // Blood, Urine, Stool, etc.
+  collectionDatetime String?
+  pathologyBarcode  String?
+
+  // Clinical Information
+  clinicianName     String?
+  clinicianContact  String?
+  clinicalNotes     String?
+  sourceOfRequest   String?  // IPD, OPD
+
+  // Status
+  status            LabOrderStatus @default(PENDING)
+
+  // From Excel Import
+  sourceFile        String?
+
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relations
+  results           LabResult[]
+
+  @@index([patientId])
+  @@index([visitId])
+  @@index([scheduleDate])
+  @@index([status])
+  @@map("lab_orders")
+}
+
+enum LabOrderStatus {
+  PENDING           // Order placed
+  SAMPLE_COLLECTED  // Sample collected
+  IN_PROGRESS       // Test in progress
+  COMPLETED         // Results ready
+  REPORTED          // Results sent to clinician
+  CANCELLED         // Order cancelled
+
+  @@map("lab_order_status")
+}
+
+enum Priority {
+  ROUTINE
+  URGENT
+  STAT            // Immediate/Emergency
+
+  @@map("priority")
+}
+
+model LabResult {
+  id              String   @id @default(cuid())
+  labOrderId      String
+  labOrder        LabOrder @relation(fields: [labOrderId], references: [id], onDelete: Cascade)
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  // Result Information
+  testName        String
+  testResult      String   // Numeric or text result
+  unit            String?  // mg/dL, mmol/L, etc.
+  referenceRange  String?  // Normal range
+  abnormalFlag    String?  // H (high), L (low), N (normal)
+
+  // Reporting
+  resultDate      DateTime @default(now())
+  reportedBy      String?  // Lab scientist who verified
+  reportedDate    DateTime?
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+
+  @@index([labOrderId])
+  @@index([patientId])
+  @@index([resultDate])
+  @@map("lab_results")
+}
+
+// ============================================================================
+// INPATIENT DEPARTMENT (IPD)
+// ============================================================================
+
+model Admission {
+  id              String   @id @default(cuid())
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  // Admission Information
+  admissionNumber String   @unique
+  admissionDate   DateTime
+  admissionType   AdmissionType
+  admissionSource String?  // Emergency, OPD, Transfer, etc.
+
+  // Ward & Bed
+  ward            String?
+  bedNumber       String?
+
+  // Clinical
+  admittingDiagnosis String?
+  admittingDoctor    String?  // User ID
+
+  // Discharge
+  discharged      Boolean  @default(false)
+  dischargeDate   DateTime?
+  dischargeType   DischargeType?
+  dischargeDiagnosis String?
+  dischargeDoctor    String?  // User ID
+  dischargeSummary   String?
+
+  // Outcome
+  outcome         AdmissionOutcome?
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([patientId])
+  @@index([admissionDate])
+  @@index([discharged])
+  @@map("admissions")
+}
+
+enum AdmissionType {
+  EMERGENCY     // Emergency admission
+  ELECTIVE      // Planned admission
+  TRANSFER      // Transfer from another facility
+  OBSERVATION   // Observation/short stay
+
+  @@map("admission_type")
+}
+
+enum DischargeType {
+  ROUTINE       // Normal discharge
+  AGAINST_MEDICAL_ADVICE  // Patient left AMA
+  TRANSFER      // Transferred to another facility
+  ABSCONDED     // Patient absconded
+  DECEASED      // Patient died
+
+  @@map("discharge_type")
+}
+
+enum AdmissionOutcome {
+  RECOVERED     // Full recovery
+  IMPROVED      // Condition improved
+  UNCHANGED     // No change
+  DETERIORATED  // Condition worsened
+  DECEASED      // Patient died
+
+  @@map("admission_outcome")
+}
+
+// ============================================================================
+// APPOINTMENTS
+// ============================================================================
+
+model Appointment {
+  id              String   @id @default(cuid())
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  // Appointment Details
+  appointmentDate DateTime
+  appointmentTime String?
+  appointmentType String?  // Follow-up, New consultation, etc.
+  department      String?
+  clinician       String?  // User ID of doctor
+
+  // Purpose
+  reason          String?
+  notes           String?
+
+  // Status
+  status          AppointmentStatus @default(SCHEDULED)
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([patientId])
+  @@index([appointmentDate])
+  @@index([status])
+  @@map("appointments")
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  CHECKED_IN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+
+  @@map("appointment_status")
+}
+
+// ============================================================================
+// PATIENT PDFs (LHIMS EXTRACTED RECORDS)
+// ============================================================================
+
+model PatientPdf {
+  id              String   @id @default(cuid())
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  // PDF Information
+  pdfType         PdfType
+  filePath        String   // Relative path: patient-pdfs/VR-A01-AAA0001_opd_visits.pdf
+  fileName        String
+  fileSize        Int?     // Bytes
+  pageCount       Int?
+
+  // Metadata
+  extractedFrom   String?  // LHIMS
+  extractionDate  DateTime @default(now())
+
+  // Date Range (for visit records)
+  dateFrom        DateTime?
+  dateTo          DateTime?
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+
+  @@index([patientId])
+  @@index([pdfType])
+  @@map("patient_pdfs")
+}
+
+enum PdfType {
+  OPD_VISITS      // OPD visit history PDF
+  IPD_ADMISSIONS  // IPD admission history PDF
+  LAB_RESULTS     // Laboratory results PDF
+  PRESCRIPTIONS   // Prescription history PDF
+  FULL_RECORD     // Complete patient record
+  DISCHARGE_SUMMARY // Discharge summary
+  OTHER           // Other medical documents
+
+  @@map("pdf_type")
+}
+
+// ============================================================================
+// DATA IMPORT TRACKING
+// ============================================================================
+
+model ImportLog {
+  id                  String   @id @default(cuid())
+
+  // Source Information
+  sourceFile          String
+  sourceCategory      String   // OPD, IPD, Consulting, ANC, Lab
+  fileDate            String?
+
+  // Import Statistics
+  recordsImported     Int      @default(0)
+  recordsSkipped      Int      @default(0)
+  recordsFailed       Int      @default(0)
+
+  // Timing
+  importStartedAt     DateTime @default(now())
+  importCompletedAt   DateTime?
+  durationSeconds     Int?
+
+  // Status
+  importStatus        ImportStatus @default(STARTED)
+  errorMessage        String?
+
+  // Metadata
+  importedBy          String?  // User who initiated import
+
+  @@index([sourceCategory])
+  @@index([importStatus])
+  @@index([importStartedAt])
+  @@map("import_logs")
+}
+
+enum ImportStatus {
+  STARTED
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+  PARTIAL     // Some records imported, some failed
+
+  @@map("import_status")
+}
+
+// ============================================================================
+// AUDIT LOGGING
+// ============================================================================
+
+model AuditLog {
+  id              String   @id @default(cuid())
+
+  // Who
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  username        String
+  userRole        UserRole
+
+  // What
+  action          AuditAction
+  resourceType    String   // Patient, Visit, Prescription, etc.
+  resourceId      String?  // ID of affected resource
+
+  // Details
+  description     String?
+  changes         Json?    // Before/after values
+
+  // When & Where
+  ipAddress       String?
+  userAgent       String?
+  timestamp       DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([resourceType])
+  @@index([timestamp])
+  @@map("audit_logs")
+}
+
+enum AuditAction {
+  // Authentication
+  LOGIN
+  LOGOUT
+  LOGIN_FAILED
+
+  // Patient Records
+  PATIENT_CREATED
+  PATIENT_VIEWED
+  PATIENT_UPDATED
+  PATIENT_DELETED
+
+  // Clinical
+  VISIT_CREATED
+  VISIT_UPDATED
+  DIAGNOSIS_ADDED
+  PRESCRIPTION_CREATED
+  PRESCRIPTION_DISPENSED
+  LAB_ORDER_CREATED
+  LAB_RESULT_ENTERED
+
+  // Emergency Access
+  EMERGENCY_ACCESS_GRANTED
+  BREAK_GLASS_ACCESS
+
+  // System
+  SETTINGS_CHANGED
+  USER_CREATED
+  USER_UPDATED
+  USER_DELETED
+  PERMISSION_CHANGED
+
+  @@map("audit_action")
+}
