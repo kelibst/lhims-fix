@@ -52,7 +52,12 @@
       "Bash(findstr:*)",
       "Bash(node_modules\\.bin\\playwright install chrome)",
       "Bash(node node_modules/playwright/cli.js install:*)",
-      "Bash(where:*)"
+      "Bash(where:*)",
+      "Bash(tasklist:*)",
+      "Bash(opd-analysis.txt)",
+      "Bash(ipd-analysis.txt)",
+      "Bash(node scripts/extract-patient-pdf-concurrent.js:*)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": []

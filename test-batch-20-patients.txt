@@ -1,0 +1,35 @@
+# Test Batch - 20 Previously Failed/Unprocessed Patients
+#
+# Purpose: Test the fixed extraction script on a small batch before full run
+# Mix: "Patient not found" errors + Other failures + Unprocessed patients
+#
+# Run with: node scripts/extract-patient-pdf-concurrent.js test-batch-20-patients.txt 3
+#
+
+# === Patients that had "Patient not found" errors ===
+# (You confirmed these DO exist in LHIMS)
+HO-A01-AAM4074
+HO-A01-AAM4084
+HO-A01-AAM4091
+HO-A01-AAM4097
+HO-A01-AAM4098
+
+# === Patients with other types of failures ===
+HO-A01-AAE2713
+HO-A01-AAE2749
+HO-A01-AAE2750
+
+# === Unprocessed patients from end of list ===
+# (Never got a chance due to browser crash at 8.5 hours)
+VR-A11-AAA8653
+VR-A11-AAA8695
+VR-A11-AAA8761
+VR-A11-AAA8778
+VR-A11-AAA8787
+VR-A11-AAA8812
+VR-A11-AAA8827
+VR-A11-AAA8828
+VR-A11-AAA8829
+VR-A11-AAA8842
+VR-A11-AAA8861
+VR-A11-AAA8884

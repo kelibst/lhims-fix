@@ -1,0 +1,129 @@
+======================================================================
+LHIMS NETWORK CAPTURE ANALYSIS
+======================================================================
+
+Analyzing: lhims-capture_2025-11-10T19-38-53-448Z.json
+
+Total requests captured: 577
+Total responses captured: 577
+Downloads detected: 0
+
+Analyzing requests and responses...
+
+
+======================================================================
+ANALYSIS RESULTS
+======================================================================
+
+1. AUTHENTICATION & SESSION MANAGEMENT
+----------------------------------------------------------------------
+Login/Auth requests found: 3
+
+Login endpoints:
+
+  [1] GET http://10.10.0.59/lhims_182/login.php
+      Status: 200
+
+  [2] GET http://10.10.0.59/lhims_182/images/login_page_img1.jpg
+      Status: 200
+
+  [3] GET http://10.10.0.59/lhims_182/images/login_page_img2.png
+      Status: 200
+
+Unique cookies found: 0
+
+
+2. ⭐ EXCEL/FILE DOWNLOADS (OPD MORBIDITY REPORTS) ⭐
+----------------------------------------------------------------------
+Download requests found: 0
+
+⚠ WARNING: No Excel download requests found!
+   Did you actually download an Excel file during capture?
+   The browser might have blocked the download.
+   Try running the capture again and make sure to:
+   1. Navigate to OPD Morbidity report
+   2. Click the download/export button
+   3. Allow the download in the browser
+   4. Wait for the file to download
+   5. Then press Ctrl+C to save
+
+
+
+3. ALL LHIMS ENDPOINTS
+----------------------------------------------------------------------
+Unique LHIMS endpoints accessed: 168
+
+
+
+4. POST REQUESTS TO LHIMS
+----------------------------------------------------------------------
+POST requests found: 11
+
+  [1] POST doLogin.php
+      Status: 302
+      Data: sLoginFlag=&redirect=&username=sno-411&password=monamourd11&submit=Secure+Login...
+
+  [2] POST searchPatientResult.php
+      Status: 200
+      Data: fnam=&pregno=AB-A01-AAD6339&InputPatientClinicSrting=&InputPatientClinic=&area=&iPatientMobileNo=&iP...
+
+  [3] POST ajaxEhr.php?sFlag=checkIsStaffAsPatient
+      Status: 200
+      Data: _isAjax=true&iPatientID=50655...
+
+  [4] POST ajaxEhr.php?sFlag=fGetPatientIdealDatesofVaccinations
+      Status: 200
+      Data: _isAjax=true&iPatientID=50655...
+
+  [5] POST ajaxIPDManager.php?sFlag=getAllSurgeryRecordDetailsForPatient
+      Status: 200
+      Data: _isAjax=true&iPatientID=50655&dFromDate=&dToDate=&iSurgeryId=&iOTId=...
+
+  [6] POST ajaxEhr.php?sFlag=GetVbcPatientData
+      Status: 200
+      Data: _isAjax=true&iVbcPatientID=50655...
+
+  [7] POST ajaxEhr.php?sFlag=GetAllSuperServiceTypesForSChedule
+      Status: 200
+      Data: _isAjax=true&iClinicID=0&sSuperServiceTypeCategoryID=1%2C2%2C3%2C4...
+
+  [8] POST getDynamicPatientEncounterDetails.php
+      Status: 200
+      Data: _isAjax=true&draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable...
+
+  [9] POST ajaxTreatmentPrescription.php?sFlag=getAllTreatmentPrescriptionDetails
+      Status: 200
+      Data: _isAjax=true&iTreatmentPrescribedPatientID=50655...
+
+  [10] POST ajaxEhr.php?sFlag=getLabParameterResultDetails
+      Status: 200
+      Data: _isAjax=true&iPatientID=50655&iClinicID=0&iIsWellnewssProvider=0&iLimit=10&iOffset=0...
+
+  [11] POST ajaxEhr.php?sFlag=getCountLabParameterResultDetails
+      Status: 200
+      Data: _isAjax=true&iPatientID=50655&iClinicID=0&iIsWellnewssProvider=0...
+
+
+✓ Detailed analysis saved to: analysis_2025-11-13T07-23-33-914Z.json
+
+
+======================================================================
+RECOMMENDATIONS & NEXT STEPS
+======================================================================
+
+⚠ WARNING: No Excel downloads detected!
+
+POSSIBLE ISSUES:
+  1. The download might have been blocked by the browser
+  2. You might not have clicked the download button
+  3. The report might use a different download mechanism
+
+TROUBLESHOOTING:
+  1. Run the capture script again:
+     node scripts/playwright-network-capture.js
+  2. In the browser, manually trigger the Excel download
+  3. Check the browser downloads folder
+  4. Make sure you see "EXCEL DOWNLOAD DETECTED" in the terminal
+  5. Then press Ctrl+C to save
+
+======================================================================

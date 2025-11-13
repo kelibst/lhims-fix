@@ -1,0 +1,29 @@
+======================================================================
+LHIMS NETWORK CAPTURE ANALYSIS
+======================================================================
+
+Analyzing: ipd-capture-1762809398507.json
+
+Total requests captured: undefined
+Total responses captured: undefined
+Downloads detected: undefined
+
+Analyzing requests and responses...
+
+c:\Users\Kelib\Desktop\projects\lhims-fix\scripts\analyze-capture.js:56
+  captureData.responses.forEach(response => {
+                        ^
+
+TypeError: Cannot read properties of undefined (reading 'forEach')
+    at analyzeCapture (c:\Users\Kelib\Desktop\projects\lhims-fix\scripts\analyze-capture.js:56:25)
+    at main (c:\Users\Kelib\Desktop\projects\lhims-fix\scripts\analyze-capture.js:454:3)
+    at Object.<anonymous> (c:\Users\Kelib\Desktop\projects\lhims-fix\scripts\analyze-capture.js:457:1)
+    at Module._compile (node:internal/modules/cjs/loader:1706:14)
+    at Object..js (node:internal/modules/cjs/loader:1839:10)
+    at Module.load (node:internal/modules/cjs/loader:1441:32)
+    at Function._load (node:internal/modules/cjs/loader:1263:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+
+Node.js v22.20.0
