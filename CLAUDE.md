@@ -1,5 +1,32 @@
 # LHIMS Data Extraction Project - Volta Regional Hospital Hohoe
 
+## ⚠️ CRITICAL: CORRECT PROJECT LOCATION ⚠️
+
+**ALWAYS work in this location**: `/home/kelib/Desktop/projects/lhims-fix/nextjs-starter/`
+
+**NEVER work in**: `/home/kelib/Desktop/projects/nextjs-starter/` (this is the ORIGINAL repo, NOT the clone)
+
+**Why this matters**:
+- The user cloned the nextjs-starter project INTO the lhims-fix directory
+- All hospital system work (migration scripts, database, Next.js app) is in the CLONED version
+- The original nextjs-starter at `/home/kelib/Desktop/projects/nextjs-starter/` should NOT be touched
+- The data files are at `/home/kelib/Desktop/projects/lhims-fix/data/` (parent of nextjs-starter clone)
+
+**Correct paths for hospital system**:
+- Next.js app: `/home/kelib/Desktop/projects/lhims-fix/nextjs-starter/`
+- Migration scripts: `/home/kelib/Desktop/projects/lhims-fix/nextjs-starter/scripts/`
+- Prisma schema: `/home/kelib/Desktop/projects/lhims-fix/nextjs-starter/prisma/schema.prisma`
+- Database: `/home/kelib/Desktop/projects/lhims-fix/nextjs-starter/prisma/dev.db`
+- Excel data source: `/home/kelib/Desktop/projects/lhims-fix/data/` (shared with parent project)
+
+**When running scripts, use**:
+```bash
+cd /home/kelib/Desktop/projects/lhims-fix/nextjs-starter
+node scripts/import-excel-to-postgres.js
+```
+**Document features in the plan/documentations folder and reference them in the readme**:
+---
+
 ## IMPORTANT INSTRUCTIONS FOR AI ASSISTANTS
 
 ### Memory Management Protocol
